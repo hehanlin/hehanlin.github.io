@@ -4,8 +4,8 @@ tags: []
 categories: []
 date: 2016-01-30 19:08:00
 ---
-<!--more-->
 ### 一、Nginx常用命令：
+<!--more-->
 >1. 启动 Nginx          /usr/local/nginx/sbin/nginx
 poechant@ubuntu:sudo ./sbin/nginx
 2. 停止 Nginx
