@@ -69,10 +69,10 @@ theme: Nlvi
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   - type: git
-    repository: https://git.coding.net/hehanlin1996/hehanlin1996.git
+    repository: git@git.coding.net:hehanlin1996/hehanlin1996.git
     branch: coding-pages
   - type: git
-    repository: https://github.com/hehanlin/hehanlin.github.io.git
+    repository: git@github.com:hehanlin/hehanlin.github.io.git
     branch: master
 
 # duoshuo_shortname: linqiong
