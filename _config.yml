@@ -75,7 +75,7 @@ deploy:
     repository: https://github.com/hehanlin/hehanlin.github.io.git
     branch: master
 
-duoshuo_shortname: linqiong
+# duoshuo_shortname: linqiong
 
 # seo
 sitemap:

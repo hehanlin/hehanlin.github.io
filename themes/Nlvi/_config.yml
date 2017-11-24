@@ -9,7 +9,6 @@ menu:
   archives: /archives
   tags: /tags
   about: /about
-  china: https://hehanlin1996.coding.me/hehanlin1996
   # RSS: /atom.xml
 
 # favicon
@@ -61,8 +60,8 @@ sub:
 #  twitter:
 #  instagram:
 #  weibo:
-#  zhihu:
-#  github:
+#zhihu: he-yi-lin-92
+#github: hehanlin
 #  linkedin:
 
 #Friend link
