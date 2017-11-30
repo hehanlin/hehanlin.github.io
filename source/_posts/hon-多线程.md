@@ -1,11 +1,12 @@
 title: python--多线程
 author: hanlin
-tags: []
+tags:
+  - python
 categories: []
-date: 2016-10-10 14:23:00
+date: 2017-04-15 14:23:00
 ---
 多进程和多线程都可以执行多个任务，线程是进程的一部分。线程的特点是线程之间可以共享内存和变量，资源消耗少（不过在Unix环境中，多进程和多线程资源调度消耗差距不明显，Unix调度较快）。python使用操作系统提供的内核级线程一比一模型，但是有一把GIL.
-
+<!--more-->
 ### Python多线程创建
 在Python中，同样可以实现多线程，有两个标准模块thread和threading，不过我们主要使用更高级的threading模块。使用例子：
 ```

@@ -1,11 +1,12 @@
 title: python--装饰器
 author: hanlin
-tags: []
+tags:
+  - python
 categories: []
-date: 2016-09-21 21:50:00
+date: 2016-11-01 17:05:00
 ---
 python 是一门优雅的语言，有些使用方法就像魔法一样。装饰器(decorator)就是一种化腐朽性为神奇的技巧。最近一直都在使用 Tornado 框架，一直还是念念不忘 Flask 。Flask 是我最喜欢的 Python 框架，最早被它吸引也是源自它使用装饰器这个语法糖（Syntactic sugar）来做 Router，让代码看上去就感觉甜甜的。
-
+<!--more-->
 Tornado 中的 Router 略显平淡，怀念 Flask 的味道，于是很好奇的想知道 Flask 是如何使用这个魔法。通过阅读 Flask 的源码，我们也可以为 Tornado 实现了一个装饰器 Router。
 
 当然对于刚接触 Python 的人，也许很容易理解装饰器本质是设计模式中的装饰器模式。可是 Python 通过@一个实现装饰器的语法糖。本文的目的就是让 @ 不再神秘。

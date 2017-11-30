@@ -4,163 +4,206 @@ tags: []
 categories: []
 date: 2016-09-15 15:45:00
 ---
-### 什么是元类？
+千万不要被所谓“元类是99%的python程序员不会用到的特性”这类的说辞吓住。因为每个中国人，都是天生的元类使用者
+学懂元类，你只需要知道两句话：
 
-理解元类（metaclass）之前，我们先了解下Python中的OOP和类（Class）。
+- 道生一，一生二，二生三，三生万物
+- 我是谁？我从哪来里？我要到哪里去？
+<!--more-->
 
-面向对象全称 Object Oriented Programming 简称OOP，这种编程思想被大家所熟知。它是把对象作为一个程序的基本单元，把数据和功能封装在里面，能够实现很好的复用性，灵活性和扩展性。OOP中有2个基本概念：类和对象：
+在python世界，拥有一个永恒的道，那就是“type”，请记在脑海中，type就是道。如此广袤无垠的python生态圈，都是由type产生出来的。
 
-1. 类是描述如何创建一个对象的代码段，用来描述具有相同的属性和方法的对象的集合，它定义了该集合中每个对象所共有的属性和方法
-2. 对象是类的实例（Instance）。我们举个例子：
-```
-In : class ObjectCreator(object):
-...:     pass
-...:
-In : my_object = ObjectCreator()
-In : my_object
-Out: <__main__.ObjectCreator at 0x1082bbef0>
-```
-而Python中的类并不是仅限于此：
-```
-In : print(ObjectCreator)
-<class '__main__.ObjectCreator'>
-```
-ObjectCreator竟然可以被print，所以它的类也是对象！既然类是对象，你就能动态地创建它们，就像创建任何对象那样。我在日常工作里面就会有这种动态创建类的需求，比如在mock数据的时候，现在有个函数func接收一个参数：
-```
-In : def func(instance):
-...:     print(instance.a, instance.b)
-...:     print(instance.method_a(10))
-...:
-```
-正常使用起来传入的instance是符合需求的（有a、b属性和method_a方法），但是当我想单独调试func的时候，需要「造」一个，假如不用元类，应该是这样写:
-```
-In : def generate_cls(a, b):
-...:     class Fake(object):
-...:         def method_a(self, n):
-...:             return n
-...:     Fake.a = a
-...:     Fake.b = b
-...:     return Fake
-...:
-In : ins = generate_cls(1, 2)()
-In : ins.a, ins.b, ins.method_a(10)
-Out: (1, 2, 10)
-```
-你会发现这不算算是「动态创建」的：
+道生一，一生二，二生三，三生万物。
 
-1. 类名（Fake）不方便改变
-2. 要创建的类需要的属性和方法越多，就要对应的加码，不灵活。
-我平时怎么做呢：
-```
-In : def method_a(self, n):
-...:     return n
-...: 
-In : ins = type('Fake', (), {'a': 1, 'b': 2, 'method_a': method_a})()
-In : ins.a, ins.b, ins.method_a(10)
-Out: (1, 2, 10)
-```
-到了这里，引出了type函数。本来它用来能让你了解一个对象的类型：
-```
-In : type(1)
-Out: int
-In : type('1')
-Out: str
-In : type(ObjectCreator)
-Out: type
-In : type(ObjectCreator())
-Out: __main__.ObjectCreator
-```
-另外，type如上所说还可以动态地创建类：type可以把对于类的描述作为参数，并返回一个类。
 
-```	
-MyClass = type('MyClass', (), {})
-```
-这种用法就是由于type实际上是一个元类，作为元类的type在Python中被用于在后台创建所有的类。在Python语言上有个说法「Everything is an object」。包整数、字符串、函数和类… 所有这些都是对象。所有这些都是由一个类创建的：
-```
-In : age = 35
-In : age.__class__
-Out: int
-In : name = 'bob'
-In : name.__class__
-Out: str
-...
-```
-现在，任何__class__中的特定__class__是什么？
-```
-In : age.__class__.__class__
-Out: type
-In : name.__class__.__class__
-Out: type
-...
-```
-如果你愿意，你可以把type称为「类工厂」。type是Python中内建元类，当然，你也可以创建你自己的元类。
+1. 道 即是 type
+2. 一 即是 metaclass(元类，或者叫类生成器)
+3. 二 即是 class(类，或者叫实例生成器)
+4. 三 即是 instance(实例)
+5. 万物 即是 实例的各种属性与方法，我们平常使用python时，调用的就是它们。
 
-### 创建自己的元类
+道和一，是我们今天讨论的命题，而二、三、和万物，则是我们常常使用的类、实例、属性和方法，用hello world来举例：
+```
+# 创建一个Hello类，拥有属性say_hello ----二的起源
+class Hello():
+    def say_hello(self, name='world'):
+        print('Hello, %s.' % name)
 
-Python2创建类的时候，可以添加一个__metaclass__属性：
-```
-class Foo(object):
-    __metaclass__ = something...
-    [...]
-```
-如果你这样做，Python会使用元类来创建Foo这个类。Python会在类定义中寻找__metaclass__。如果找到它，Python会用它来创建对象类Foo。如果没有找到它，Python将使用type来创建这个类。
 
-在Python3中语法改变了一下：
+# 从Hello类创建一个实例hello ----二生三
+hello = Hello()
+
+# 使用hello调用方法say_hello ----三生万物
+hello.say_hello()
 ```
-class Simple1(object, metaclass=something...):
-    [...]
+输出效果：
 ```
-本质是一样的
+Hello, world.
 ```
-class HelloMeta(type):
-    def __new__(cls, name, bases, attrs):
-        def __init__(self, func):
-            self.func = func
-        def hello(self):
-            print 'hello world'
-        t = type.__new__(cls, name, bases, attrs)
-        t.__init__ = __init__
-        t.hello = hello
-        return t
+这就是一个标准的“二生三，三生万物”过程。 从类到我们可以调用的方法，用了这两步。
+
+那我们不由自主要问，类从何而来呢？回到代码的第一行。
+class Hello其实是一个函数的“语义化简称”，只为了让代码更浅显易懂，它的另一个写法是：
+```
+def fn(self, name='world'): # 假如我们有一个函数叫fn
+    print('Hello, %s.' % name)
+    
+Hello = type('Hello', (object,), dict(say_hello=fn)) # 通过type创建Hello class ---- 神秘的“道”，可以点化一切，这次我们直接从“道”生出了“二”
+```
+这样的写法，就和之前的Class Hello写法作用完全相同，你可以试试创建实例并调用
+```
+# 从Hello类创建一个实例hello ----二生三，完全一样
+hello = Hello()
+ 
+# 使用hello调用方法say_hello ----三生万物，完全一样
+hello.say_hello()
+```
+输出效果：
+```
+Hello, world. ----调用结果完全一样。
+```
+我们回头看一眼最精彩的地方，道直接生出了二：
+```
+Hello = type(‘Hello’, (object,), dict(say_hello=fn))
+```
+这就是“道”，python世界的起源，你可以为此而惊叹。
+注意它的三个参数！暗合人类的三大永恒命题：我是谁，我从哪里来，我要到哪里去。
+
+- 第一个参数：我是谁。 在这里，我需要一个区分于其它一切的命名，以上的实例将我命名为“Hello”
+- 第二个参数：我从哪里来在这里.我需要知道从哪里来，也就是我的“父类”，以上实例中我的父类是“object”——python中一种非常初级的类。
+- 第三个参数：我要到哪里去. 在这里，我们将需要调用的方法和属性包含到一个字典里，再作为参数传入。以上实例中，我们有一个say_hello方法包装进了字典中。
+
+值得注意的是，三大永恒命题，是一切类，一切实例，甚至一切实例属性与方法都具有的。理所应当，它们的“创造者”，道和一，即type和元类，也具有这三个参数。但平常，类的三大永恒命题并不作为参数传入，而是以如下方式传入
+```
+class Hello(object){
+# class 后声明“我是谁”
+# 小括号内声明“我来自哪里”
+# 中括号内声明“我要到哪里去”
+    def say_hello(){
         
-class New_Hello(object):
-    __metaclass__ = HelloMeta
+    }
+}
 ```
-New_Hello初始化需要添加一个参数，并包含一个叫做hello的方法：
-```
-In : h = New_Hello(lambda x: x)
-In : h.func(10), h.hello()
-hello world
-Out: (10, None)
-```
-PS: 这个例子只能运行于Python2。
+- 造物主，可以直接创造单个的人，但这是一件苦役。造物主会先创造“人”这一物种，再批量创造具体的个人。并将三大永恒命题，一直传递下去。
+- “道”可以直接生出“二”，但它会先生出“一”，再批量地制造“二”。
+- type可以直接生成类（class），但也可以先生成元类（metaclass），再使用元类批量定制类（class）。
+### 元类——道生一，一生二
+一般来说，元类均被命名后缀为Metalass。想象一下，我们需要一个可以自动打招呼的元类，它里面的类方法呢，有时需要say_Hello，有时需要say_Hi，有时又需要say_Sayolala，有时需要say_Nihao。
 
-在Python里__new__方法创建实例，__init__负责初始化一个实例。对于type也是一样的效果，只不过针对的是「类」，在上面的HelloMeta中只使用了__new__创建类，我们再感受一个使用__init__的元类：
-```
-In : class HelloMeta2(type):
-...:     def __init__(cls, name, bases, attrs):
-...:         super(HelloMeta2, cls).__init__(name, bases, attrs)
-...:         attrs_ = {}
-...:         for k, v in attrs.items():
-...:             if not k.startswith('__'):
-...:                 attrs_[k] = v
-...:         setattr(cls, '_new_dict', attrs_)
-...:
-...:
-```
-别往下看。思考下这样创建出来的类有什么特殊的地方？
+如果每个内置的say_xxx都需要在类里面声明一次，那将是多么可怕的苦役！ 不如使用元类来解决问题。
 
-我揭晓一下（这次使用Python 3语法）：
+以下是创建一个专门“打招呼”用的元类代码：
 ```
-In : class New_Hello2(metaclass=HelloMeta2):
-...:     a = 1
-...:     b = True
-In : New_Hello2._new_dict
-Out: {'a': 1, 'b': True}
-In : h2 = New_Hello2()
-In : h2._new_dict
-Out: {'a': 1, 'b': True}
+class SayMetaClass(type):
+
+    def __new__(cls, name, bases, attrs):
+        attrs['say_'+name] = lambda self,value,saying=name: print(saying+','+value+'!')
+        return type.__new__(cls, name, bases, attrs)
 ```
-有点明白么？其实就是在创建类的时候把类的属性循环了一遍把不是__开头的属性最后存在了_new_dict上。
-### 什么时候需要用元类？
-日常的业务逻辑开发是不太需要使用到元类的，因为元类是用来拦截和修改类的创建的，用到的场景很少。我能想到最典型的场景就是 ORM。ORM就是「对象 关系 映射」的意思，简单的理解就是把关系数据库的一张表映射成一个类，一行记录映射为一个对象。ORM框架中的Model只能动态定义，因为这个模式下这些关系只能是由使用者来定义，元类再配合描述符就可以实现ORM了，现在做个预告，未来我会分享「如何写一个ORM」这个主题。
+记住两点：
+
+1. 元类是由“type”衍生而出，所以父类需要传入type。【道生一，所以一必须包含道】
+
+2. 元类的操作都在 __new__中完成，它的第一个参数是将创建的类，之后的参数即是三大永恒命题：我是谁，我从哪里来，我将到哪里去。 它返回的对象也是三大永恒命题，接下来，这三个参数将一直陪伴我们。
+
+在__new__中，我只进行了一个操作，就是
+```
+attrs['say_'+name] = lambda self,value,saying=name: print(saying+','+value+'!')
+```
+它跟据类的名字，创建了一个类方法。比如我们由元类创建的类叫“Hello”，那创建时就自动有了一个叫“say_Hello”的类方法，然后又将类的名字“Hello”作为默认参数saying，传到了方法里面。然后把hello方法调用时的传参作为value传进去，最终打印出来。
+
+那么，一个元类是怎么从创建到调用的呢？
+来！一起根据道生一、一生二、二生三、三生万物的准则，走进元类的生命周期吧!
+```
+# 道生一：传入type
+class SayMetaClass(type):
+
+    # 传入三大永恒命题：类名称、父类、属性
+    def __new__(cls, name, bases, attrs):
+        # 创造“天赋”
+        attrs['say_'+name] = lambda self,value,saying=name: print(saying+','+value+'!')
+        # 传承三大永恒命题：类名称、父类、属性
+        return type.__new__(cls, name, bases, attrs)
+
+# 一生二：创建类
+class Hello(object, metaclass=SayMetaClass):
+    pass
+
+# 二生三：创建实列
+hello = Hello()
+
+# 三生万物：调用实例方法
+hello.say_Hello('world!')
+```
+输出为
+```
+Hello, world!
+```
+注意：通过元类创建的类，第一个参数是父类，第二个参数是metaclass
+
+普通人出生都不会说话，但有的人出生就会打招呼说“Hello”，“你好”,“sayolala”，这就是天赋的力量。它会给我们面向对象的编程省下无数的麻烦。
+
+现在，保持元类不变，我们还可以继续创建Sayolala， Nihao类，如下：
+```
+# 一生二：创建类
+class Sayolala(object, metaclass=SayMetaClass):
+    pass
+
+# 二生三：创建实列
+s = Sayolala()
+
+# 三生万物：调用实例方法
+s.say_Sayolala('japan!')
+```
+输出
+```
+Sayolala, japan!
+```
+也可以说中文
+```
+# 一生二：创建类
+class Nihao(object, metaclass=SayMetaClass):
+    pass
+
+# 二生三：创建实列
+n = Nihao()
+
+# 三生万物：调用实例方法
+n.say_Nihao('中华!')
+```
+输出
+```
+Nihao, 中华!
+```
+再来一个小例子：
+```
+# 道生一
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        # 天赋：通过add方法将值绑定
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+        
+# 一生二
+class MyList(list, metaclass=ListMetaclass):
+    pass
+    
+# 二生三
+L = MyList()
+
+# 三生万物
+L.add(1)
+```
+现在我们打印一下L
+```
+print(L)
+
+>>> [1]
+```
+而普通的list没有add()方法
+```
+L2 = list()
+L2.add(1)
+
+>>>AttributeError: 'list' object has no attribute 'add'
+```
