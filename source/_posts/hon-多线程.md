@@ -5,118 +5,467 @@ tags:
 categories: []
 date: 2017-04-15 14:23:00
 ---
-多进程和多线程都可以执行多个任务，线程是进程的一部分。线程的特点是线程之间可以共享内存和变量，资源消耗少（不过在Unix环境中，多进程和多线程资源调度消耗差距不明显，Unix调度较快）。python使用操作系统提供的内核级线程一比一模型，但是有一把GIL.
+多进程和多线程都可以执行多个任务，我们先介绍多线程。
+线程是进程的一部分。线程的特点是线程之间可以共享内存和变量，资源消耗少（不过在Unix环境中，多进程和多线程资源调度消耗差距不明显，Unix调度较快）。python使用操作系统提供的内核级线程一比一模型，但是有一把GIL.
 <!--more-->
-### Python多线程创建
-在Python中，同样可以实现多线程，有两个标准模块thread和threading，不过我们主要使用更高级的threading模块。使用例子：
-```
-import threading
+### GIL
+Python（特指CPython）的多线程的代码并不能利用多核的优势，而是通过著名的全局解释锁（GIL）来进行处理的。如果是一个计算型的任务，使用多线程GIL就会让多线程变慢。我们举个计算斐波那契数列的例子：
+```python
+# coding=utf-8
 import time
- 
-def target():
-    print 'the curent threading  %s is running' % threading.current_thread().name
-    time.sleep(1)
-    print 'the curent threading  %s is ended' % threading.current_thread().name
- 
-print 'the curent threading  %s is running' % threading.current_thread().name
-t = threading.Thread(target=target)
- 
-t.start()
-t.join()
-print 'the curent threading  %s is ended' % threading.current_thread().name
- 
-输出：
-the curent threading  MainThread is running
-the curent threading  Thread-1 is running
-the curent threading  Thread-1 is ended
-the curent threading  MainThread is ended
-```
-start是启动线程，join是阻塞当前线程，即使得在当前线程结束时，不会退出。从结果可以看到，主线程直到Thread-1结束之后才结束。
-Python中，默认情况下，如果不加join语句，那么主线程不会等到当前线程结束才结束，但却不会立即杀死该线程。如不加join输出如下：
-```
-the curent threading  MainThread is running
-the curent threading  Thread-1 is running
-the curent threading  MainThread is ended
-the curent threading  Thread-1 is ended
-```
-但如果为线程实例添加t.setDaemon(True)之后，如果不加join语句，那么当主线程结束之后，会杀死子线程。代码：
-```
 import threading
-import time
-def target():
-    print 'the curent threading  %s is running' % threading.current_thread().name
-    time.sleep(4)
-    print 'the curent threading  %s is ended' % threading.current_thread().name
-print 'the curent threading  %s is running' % threading.current_thread().name
-t = threading.Thread(target=target)
-t.setDaemon(True)
-t.start()
-t.join()
-print 'the curent threading  %s is ended' % threading.current_thread().name
-输出如下：
-the curent threading  MainThread is running
-the curent threading  Thread-1 is runningthe curent threading  MainThread is ended
+def profile(func):
+    def wrapper(*args, **kwargs):
+        import time
+        start = time.time()
+        func(*args, **kwargs)
+        end   = time.time()
+        print 'COST: {}'.format(end - start)
+    return wrapper
+    
+def fib(n):
+    if n<= 2:
+        return 1
+    return fib(n-1) + fib(n-2)
+    
+@profile
+def nothread():
+    fib(35)
+    fib(35)
+    
+@profile
+def hasthread():
+    for i in range(2):
+        t = threading.Thread(target=fib, args=(35,))
+        t.start()
+        
+    main_thread = threading.currentThread()
+    
+    for t in threading.enumerate():
+        if t is main_thread:
+            continue
+        t.join()
+        
+nothread()
+hasthread()
 ```
-如果加上join,并设置等待时间，就会等待线程一段时间再退出：
+运行的结果你猜猜会怎么样：
+```shell
+❯ python profile_thread.py
+COST: 5.05716490746
+COST: 6.75599503517
 ```
-import threading
-import time
-def target():
-    print 'the curent threading  %s is running' % threading.current_thread().name
-    time.sleep(4)
-    print 'the curent threading  %s is ended' % threading.current_thread().name
-print 'the curent threading  %s is running' % threading.current_thread().name
-t = threading.Thread(target=target)
-t.setDaemon(True)
-t.start()
-t.join(1)
-输出：
-the curent threading  MainThread is running
-the curent threading  Thread-1 is running
-the curent threading  MainThread is ended
-主线程等待1秒，就自动结束，并杀死子线程。如果join不加等待时间，t.join(),就会一直等待，一直到子线程结束，输出如下：
-the curent threading  MainThread is running
-the curent threading  Thread-1 is running
-the curent threading  Thread-1 is ended
-the curent threading  MainThread is ended
-```
-### 线程锁和ThreadLocal
-1. 线程锁
-对于多线程来说，最大的特点就是线程之间可以共享数据，那么共享数据就会出现多线程同时更改一个变量，使用同样的资源，而出现死锁、数据错乱等情况。
+这种情况还不如不用多线程！
 
-假设有两个全局资源，a和b，有两个线程thread1，thread2. thread1占用a，想访问b，但此时thread2占用b，想访问a，两个线程都不释放此时拥有的资源，那么就会造成死锁。
+GIL是必须的，这是Python设计的问题：Python解释器是非线程安全的。这意味着当从线程内尝试安全的访问Python对象的时候将有一个全局的强制锁。 在任何时候，仅仅一个单一的线程能够获取Python对象或者C API。每100个字节的Python指令解释器将重新获取锁，这（潜在的）阻塞了I/O操作。因为锁，CPU密集型的代码使用线程库时，不会获得性能的提高（但是当它使用之后介绍的多进程库时，性能可以获得提高）。
 
-对于该问题，出现了Lock。 当访问某个资源之前，用Lock.acquire()锁住资源,访问之后，用Lock.release()释放资源。
+那是不是由于GIL的存在，多线程库就是个「鸡肋」呢？当然不是。事实上我们平时会接触非常多的和网络通信或者数据输入/输出相关的程序，比如网络爬虫、文本处理等等。这时候由于网络情况和I/O的性能的限制，Python解释器会等待读写数据的函数调用返回，这个时候就可以利用多线程库提高并发效率了。
+### 同步机制
+如果多个线程共同对某个数据修改，则可能出现不可预料的结果，为了保证数据的正确性，需要对多个线程进行同步。
+#### (1)Lock
+Lock也可以叫做互斥锁，其实相当于信号量为1。我们先看一个不加锁的例子：
+```python
+import time
+from threading import Thread
+value = 0
+
+def getlock():
+    global value
+    new = value + 1
+    time.sleep(0.001)  # 使用sleep让线程有机会切换
+    value = new
+    
+threads = []
+
+for i in range(100):
+    t = Thread(target=getlock)
+    t.start()
+    threads.append(t)
+    
+for t in threads:
+    t.join()
+    
+print value
 ```
-a = 3
-lock = threading.Lock()
-def target():
-    print 'the curent threading  %s is running' % threading.current_thread().name
-    time.sleep(4)
-    global a
-    lock.acquire()
-    try:
-        a += 3
-    finally:
-        lock.release()
-    print 'the curent threading  %s is ended' % threading.current_thread().name
-    print 'yes'
+执行一下：
+```shell
+❯ python nolock.py
+16
 ```
-用finally的目的是防止当前线程无线占用资源。
-2. ThreadLocal
-介绍完线程锁，接下来出场的是ThreadLocal。当不想将变量共享给其他线程时，可以使用局部变量，但在函数中定义局部变量会使得在函数之间传递特别麻烦。ThreadLocal是非常牛逼的东西，它解决了全局变量需要枷锁，局部变量传递麻烦的两个问题。通过在线程中定义：
+不加锁的情况下，结果会远远的小于100。很明显是错的，那我们加上互斥锁看看：
+```python
+import time
+from threading import Thread, Lock
+value = 0
+lock = Lock()
+
+def getlock():
+    global value
+    with lock:
+        new = value + 1
+        time.sleep(0.001)
+        value = new
+        
+threads = []
+
+for i in range(100):
+    t = Thread(target=getlock)
+    t.start()
+    threads.append(t)
+    
+for t in threads:
+    t.join()
+    
+print value
+```
+我们对value的自增加了锁，就可以保证了结果了：
+```shell
+❯ python lock.py
+100
+```
+
+#### (2)RLock
+RLock是可重入锁（自旋锁），提供和lock对象相同的方法，可重入锁的特点是：
+- 记录锁住自己的线程 t ，这样 t 可以多次调用 acquire() 方法而不会被阻塞，比如 t 可以多次声明自己对某个资源的需求。
+- 可重入锁必须由锁住自己的线程释放（rl.release()）
+- rlock内部有一个计数器，只有锁住自己的线程 t 调用的 release() 方法和之前调用 acquire() 方法的次数相同时，才会真正解锁一个rlock。
+
+#### (3)Semaphore（信号量）
+信号量同步基于内部计数器，每调用一次acquire()，计数器减1；每调用一次release()，计数器加1.当计数器为0时，acquire()调用被阻塞。所以信号量可以对资源数量进行控制。
+```python
+import time
+from random import random
+from threading import Thread, Semaphore
+
+sema = Semaphore(3)
+
+def foo(tid):
+    with sema:
+        print '{} acquire sema'.format(tid)
+        wt = random() * 2
+        time.sleep(wt)
+    print '{} release sema'.format(tid)
+    
+threads = []
+
+for i in range(5):
+    t = Thread(target=foo, args=(i,))
+    threads.append(t)
+    t.start()
+    
+for t in threads:
+    t.join()
+```
+这个例子中，我们限制了同时能访问资源的数量为3。看一下执行的效果：
+```shell
+❯ python semaphore.py
+0 acquire sema
+1 acquire sema
+ 2 acquire sema
+2 release sema
+ 3 acquire sema
+1 release sema
+ 4 acquire sema
+0 release sema
+3 release sema
+4 release sema
+```
+
+#### (4)Condition（条件）
+一个线程等待特定条件，而另一个线程发出特定条件满足的信号。最好说明的例子就是「生产者/消费者」模型：
+```python
+import time
+import threading
+
+def consumer(cond):
+    t = threading.currentThread()
+    with cond:
+        cond.wait()  # wait()方法创建了一个名为waiter的锁，并且设置锁的状态为locked。这个waiter锁用于线程间的通讯
+        print '{}: Resource is available to consumer'.format(t.name)
+        
+def producer(cond):
+    t = threading.currentThread()
+    with cond:
+        print '{}: Making resource available'.format(t.name)
+        cond.notifyAll()  # 释放waiter锁，唤醒消费者
+        
+condition = threading.Condition()
+c1 = threading.Thread(name='c1', target=consumer, args=(condition,))
+c2 = threading.Thread(name='c2', target=consumer, args=(condition,))
+p = threading.Thread(name='p', target=producer, args=(condition,))
+c1.start()
+time.sleep(1)
+c2.start()
+time.sleep(1)
+p.start()
+
+```
+执行一下：
+
+```shell
+❯ python condition.py
+p: Making resource available
+c2: Resource is available to consumer
+c1: Resource is available to consumer
+```
+可以看到生产者发送通知之后，消费者都收到了。
+
+#### (5)Event
+Event对象可以让任何数量的线程暂停和等待，event 对象对应一个 True 或 False 的状态（flag），刚创建的event对象的状态为False。
+```python
+# coding=utf-8
+import time
+import threading
+from random import randint
+
+TIMEOUT = 2
+
+def consumer(event, l):
+    t = threading.currentThread()
+    while 1:
+        event_is_set = event.wait(TIMEOUT)
+        if event_is_set:
+            try:
+                integer = l.pop()
+                print '{} popped from list by {}'.format(integer, t.name)
+                event.clear()  # 重置事件状态
+            except IndexError:  # 为了让刚启动时容错
+                pass
+                
+def producer(event, l):
+    t = threading.currentThread()
+    while 1:
+        integer = randint(10, 100)
+        l.append(integer)
+        print '{} appended to list by {}'.format(integer, t.name)
+        event.set()	 # 设置事件
+        time.sleep(1)
+        
+event = threading.Event()
+l = []
+threads = []
+for name in ('consumer1', 'consumer2'):
+    t = threading.Thread(name=name, target=consumer, args=(event, l))
+    t.start()
+    threads.append(t)
+    
+p = threading.Thread(name='producer1', target=producer, args=(event, l))
+p.start()
+threads.append(p)
+for t in threads:
+    t.join()
+```
+执行的效果是这样的：
+```shell
+77 appended to list by producer1
+77 popped from list by consumer1
+46 appended to list by producer1
+46 popped from list by consumer2
+43 appended to list by producer1
+43 popped from list by consumer2
+37 appended to list by producer1
+37 popped from list by consumer2
+33 appended to list by producer1
+33 popped from list by consumer2
+57 appended to list by producer1
+57 popped from list by consumer1
+
+```
+可以看到事件被2个消费者比较平均的接收并处理了。如果使用了wait方法，线程就会等待我们设置事件，这也有助于保证任务的完成。
+
+#### (6)Queue（线程通信的常用手段）
+队列在并发开发中最常用的。我们借助「生产者/消费者」模式来理解：生产者把生产的「消息」放入队列，消费者从这个队列中对去对应的消息执行。
+
+大家主要关心如下4个方法就好了：
+
+- put: 向队列中添加一个项。
+- get: 从队列中删除并返回一个项。
+- task_done: 当某一项任务完成时调用。
+- join: 阻塞直到所有的项目都被处理完。
+
+```python
+# coding=utf-8
+import time
+import threading
+from random import random
+from Queue import Queue
+
+q = Queue()
+
+def double(n):
+    return n * 2
+    
+def producer():
+    while 1:
+        wt = random()
+        time.sleep(wt)
+        q.put((double, wt))
+        
+def consumer():
+    while 1:
+        task, arg = q.get()
+        print arg, task(arg)
+        q.task_done()
+        
+for target in(producer, consumer):
+    t = threading.Thread(target=target)
+    t.start()
+```
+这就是最简化的队列架构。
+
+Queue模块还自带了PriorityQueue（带有优先级）和LifoQueue（后进先出）2种特殊队列。我们这里展示下线程安全的优先级队列的用法，
+PriorityQueue要求我们put的数据的格式是(priority_number, data)，我们看看下面的例子：
+```python
+import time
+import threading
+from random import randint
+from Queue import PriorityQueue
+q = PriorityQueue()
+
+def double(n):
+    return n * 2
+    
+def producer():
+    count = 0
+    while 1:
+        if count > 5:
+            break
+        pri = randint(0, 100)
+        print 'put :{}'.format(pri)
+        q.put((pri, double, pri))  # (priority, func, args)
+        count += 1
+        
+def consumer():
+    while 1:
+        if q.empty():
+            break
+        pri, task, arg = q.get()
+        print '[PRI:{}] {} * 2 = {}'.format(pri, arg, task(arg))
+        q.task_done()
+        time.sleep(0.1)
+        
+t = threading.Thread(target=producer)
+t.start()
+time.sleep(1)
+t = threading.Thread(target=consumer)
+t.start()
+```
+其中消费者是故意让它执行的比生产者慢很多，为了节省篇幅，只随机产生5次随机结果。我们看下执行的效果：
+```shell
+❯ python priority_queue.py
+put :84
+put :86
+put :16
+put :93
+put :14
+put :93
+[PRI:14] 14 * 2 = 28
+[PRI:16] 16 * 2 = 32
+[PRI:84] 84 * 2 = 168
+[PRI:86] 86 * 2 = 172
+[PRI:93] 93 * 2 = 186
+[PRI:93] 93 * 2 = 186
+```
+可以看到put时的数字是随机的，但是get的时候先从优先级更高（数字小表示优先级高）开始获取的。
+### 线程池
+面向对象开发中，大家知道创建和销毁对象是很费时间的，因为创建一个对象要获取内存资源或者其它更多资源。无节制的创建和销毁线程是一种极大的浪费。那我们可不可以把执行完任务的线程不销毁而重复利用呢？仿佛就是把这些线程放进一个池子，一方面我们可以控制同时工作的线程数量，一方面也避免了创建和销毁产生的开销。
+
+线程池在标准库中其实是有体现的，只是在官方文章中基本没有被提及：
+```shell
+In : from multiprocessing.dummy import Pool as ThreadPool
+In : pool = ThreadPool(5)
+In : pool.map(lambda x: x**2, range(5))
+Out: [0, 1, 4, 9, 16]
+```
+当然我们也可以自己实现一个：
+```python
+# coding=utf-8
+import time
+import threading
+from random import random
+from Queue import Queue
+
+def double(n):
+    return n * 2
+    
+class Worker(threading.Thread):
+    def __init__(self, queue):
+        super(Worker, self).__init__()
+        self._q = queue
+        self.daemon = True
+        self.start()
+        
+    def run(self):
+        while 1:
+            f, args, kwargs = self._q.get()
+            try:
+                print 'USE: {}'.format(self.name)  # 线程名字
+                print f(*args, **kwargs)
+            except Exception as e:
+                print e
+            self._q.task_done()
+            
+class ThreadPool(object):
+    def __init__(self, num_t=5):
+        self._q = Queue(num_t)
+        # Create Worker Thread
+        for _ in range(num_t):
+            Worker(self._q)
+            
+    def add_task(self, f, *args, **kwargs):
+        self._q.put((f, args, kwargs))
+        
+    def wait_complete(self):
+        self._q.join()
+        
+pool = ThreadPool()
+
+for _ in range(8):
+    wt = random()
+    pool.add_task(double, wt)
+    time.sleep(wt)
+    
+pool.wait_complete()
+```
+执行一下:
+```shell
+USE: Thread-1
+1.58762376489
+USE: Thread-2
+0.0652918738849
+USE: Thread-3
+0.997407997138
+USE: Thread-4
+1.69333900685
+USE: Thread-5
+0.726900613676
+USE: Thread-1
+1.69110052253
+USE: Thread-2
+1.89039743989
+USE: Thread-3
+0.96281118122
+```
+线程池会保证同时提供5个线程工作，但是我们有8个待完成的任务，可以看到线程按顺序被循环利用了。
+
+### 
+
+### ThreadLocal
+当不想将变量共享给其他线程时，可以使用局部变量，但在函数中定义局部变量会使得在函数之间传递特别麻烦。ThreadLocal是非常牛逼的东西，它解决了全局变量需要枷锁，局部变量传递麻烦的两个问题。通过在线程中定义：
 local_school = threading.local()
 此时这个local_school就变成了一个全局变量，但这个全局变量只在该线程中为全局变量，对于其他线程来说是局部变量，别的线程不可更改。 def process_thread(name):# 绑定ThreadLocal的student: local_school.student = name
 
 这个student属性只有本线程可以修改，别的线程不可以。代码：
-```
+```python
 local = threading.local()
 def func(name):
     print 'current thread:%s' % threading.currentThread().name
     local.name = name
     print "%s in %s" % (local.name,threading.currentThread().name)
+    
 t1 = threading.Thread(target=func,args=('haibo',))
 t2 = threading.Thread(target=func,args=('lina',))
+
 t1.start()
 t2.start()
 t1.join()
@@ -124,54 +473,4 @@ t2.join()
 ```
 从代码中也可以看到，可以将ThreadLocal理解成一个dict,可以绑定不同变量。
 ThreadLocal用的最多的地方就是每一个线程处理一个HTTP请求，在Flask框架中利用的就是该原理，它使用的是基于Werkzeug的LocalStack。
-### pool实现多线程
-对于多线程的使用，我们经常是用thread来创建，比较繁琐：
-```
-class MyThread(threading.Thread):
-    def init(self):
-        threading.Thread.init(self)
-def run(self):
-    lock.acquire()
-    print threading.currentThread().getName()
-    lock.release()
- 
-def build_worker(num):
-    workers = []
-    for t in range(num):
-        work = MyThread()
-        work.start()
-        workers.append(work)
-    return workers
-def producer():
-    threads = build_worker(4)
-    for w in threads:
-        w.join()
-    print 'Done'
-```
-在 Python 中有个两个库包含了 pool： multiprocessing 和它鲜为人知的子库 multiprocessing.dummy.dummy 是 multiprocessing 模块的完整克隆，唯一的不同在于 multiprocessing 作用于进程，而 dummy 模块作用于线程。代码：
-```
-import urllib2
- 
-from multiprocessing.dummy import Pool as ThreadPool
- 
-urls = ['http://www.baidu.com','http://www.sina.com','http://www.qq.com']
- 
-pool = ThreadPool()
- 
-results = pool.map(urllib2.urlopen,urls)
-print results
-pool.close()
-pool.join()
- 
-print 'main ended'
-```
-- pool = ThreadPool()创建了线程池，其默认值为当前机器 CPU 的核数，可以指定线程池大小，不是越多越好，因为越多的话，线程之间的切换也是很消耗资源的。
-- results = pool.map(urllib2.urlopen,urls) 该语句将不同的url传给各自的线程，并把执行后结果返回到results中。
-
-代码清晰明了，巧妙得完成Threading模块完成的功能。
-### Python多线程的缺陷
-上面说了那么多关于多线程的用法，但Python多线程并不能真正能发挥作用，因为在Python中，有一个GIL，即全局解释锁，该锁的存在保证在同一个时间只能有一个线程执行任务，也就是多线程并不是真正的并发，只是交替得执行。假如有10个线程炮在10核CPU上，当前工作的也只能是一个CPU上的线程。
-### Python多线程的应用场景
-虽然Python多线程有缺陷，总被人说成是鸡肋，但也不是一无用处，它很适合用在IO密集型任务中。I/O密集型执行期间大部分是时间都用在I/O上，如数据库I/O，较少时间用在CPU计算上。因此该应用场景可以使用Python多线程，当一个任务阻塞在IO操作上时，我们可以立即切换执行其他线程上执行其他IO操作请求。
-
-总结：Python多线程在IO密集型任务中还是很有用处的，而对于计算密集型任务，应该使用Python多进程。
+end！！！
