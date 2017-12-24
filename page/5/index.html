@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+    linqiong'blog
+    
+        | jobbole DA of JinCheng
+    
+</title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+
+<section class="posts">
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年7月26日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/07/26/科学上网dns/">科学上网dns</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>电信：180.153.54.132，联通112.253.28.171，移动112.33.5.51，</p>
+<p>hello dns智能版（不用区分运营商）：42.159.153.39</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年6月27日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/06/27/无知的心痛/">无知的心痛</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>我没有说谎，我只想更好地爱你，但却带来了伤害，我一直都在追逐你的脚步，而不是你追逐我的脚步，你是我心中的灯塔，而这一切都很理想～</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年6月17日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/06/17/淡定/">淡定</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>无论未来怎么样，起码现在应该保持镇定，人静不下来就做不好事，至于我这样的，如果静不下来根本就不能做事，所以一定要冷静，好好的梳理，那样一切又会变得顺起来。</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年6月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/06/06/琼-喜悦/">琼-喜悦</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>我们在一起很开心。唱歌，大合唱。大学唯一的同桌。</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年6月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/06/06/琼-歌/">琼-歌</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>这街上太拥挤，太多人有秘密。</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年6月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/06/06/夜晚中最闪亮的灯光/">夜晚中最闪亮的灯光</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>有颗心不断膨胀不断膨胀。。</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月28日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/情感/">情感</a></span>
+                
+                    <span class="post-category"><a href="/categories/情感/旅行/">旅行</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/28/改革中遇到的问题只能用改革来解决/">改革中遇到的问题只能用改革来解决</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>人都有在十字路口徘徊迷茫的过程，我自己也一样，就在昨天，我认为我不必再为此而迷茫，因为我决定要自己考本科，这个决定推翻了我这数年来的想法，值得一提的是吗，这次是我许多年来拿出这么大的勇气来下这个决定，所以我认为它真是可以称为一个决定，或者是一个人对于人生的抉择。</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2015/05/28/改革中遇到的问题只能用改革来解决/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月17日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/17/走一步，看百步/">走一步，看百步</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>当我们遇到我们（或其他人）给自己埋下的逻辑炸弹，编程会变得很困难。我们天天在编写逻辑炸弹。它们就在地表下静静地待着，等着爆炸。一旦爆炸，通常就带来不可预测的严重后果。</p>
+<p>随着新的代码模块被加入到项目中，项目的复杂度会上升。这种上升不是线性的，而是呈某种指数形式。</p>
+<p>程序员的精力是一种有限的资源，所以这种爆炸式增长的复杂度最终会淹没程序员。你的大脑最终会不堪重负，这是一个转折点。</p>
+<p>这就是炸弹开始爆炸的时刻。有各种各样的炸弹：在遍历时修改数组，数组下标偶尔变成负数，另一个线程在你的函数执行的起点和终点中间改变对象的状态。轰，轰，轰……</p>
+<p>我认为最快捷可靠的程序设计需要培养一种避免这些问题的风格。</p>
+<p>编写明确表达行为的代码。选择有意义、准确、无歧义的符号名字。严格执行命名方案，不要用不同的单词描述同一个事物。</p>
+<p>如果有，采用最简单的解决方案。不要为速度优化，而是为可读性和透明度优化。</p>
+<p>如果你在最初编写代码时没有注意可重用性，不要欺骗自己相信代码可以很神奇地被重用。相反，应该从一种情形着手，保持代码的具体性。如果值得修改代码让它一般化，那么应该做好彻底重写的准备。</p>
+<p><span class="post_sig">发自 WordPress for Android</span></p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月15日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/15/img-日落/">img-日落</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <a id="more"></a>
+<p><a href="http://liqiong520-hexo.stor.sinaapp.com/img%2Fwpid-wp-1431688224633-1024x768.jpg" target="_blank" rel="noopener"><img src="http://liqiong520-hexo.stor.sinaapp.com/img%2Fwpid-wp-1431688224633-1024x768.jpg" alt="image" title="wp-1431688224633.jpg"></a></p>
+<p><span class="post_sig">发自 WordPress for Android</span></p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月14日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/14/img-晚霞/">img-晚霞</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <a id="more"></a>
+<p><a href="http://liqiong520-hexo.stor.sinaapp.com/img%2Fwpid-wp-1431601482937-1024x768.jpg" target="_blank" rel="noopener"><img src="http://liqiong520-hexo.stor.sinaapp.com/img%2Fwpid-wp-1431601482937-1024x768.jpg" alt="image" title="wp-1431601482937.jpg"></a></p>
+<p><span class="post_sig">发自 WordPress for Android</span></p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+</section>
+    
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/page/4/">< 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">下一页 ></a>
+    </nav>
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> python--装饰器 · linqiong'blog </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+    <meta name="keywords" content="python, Nlvi" />
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年11月1日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                python--装饰器
+            
+            </h1>
+            
+                
+                    <div class="post-tags syuanpi riseIn-light back-3">
+                    
+                        <a href="/tags/python/">python</a>
+                    
+                    </div>
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <p>python 是一门优雅的语言，有些使用方法就像魔法一样。装饰器(decorator)就是一种化腐朽性为神奇的技巧。最近一直都在使用 Tornado 框架，一直还是念念不忘 Flask 。Flask 是我最喜欢的 Python 框架，最早被它吸引也是源自它使用装饰器这个语法糖（Syntactic sugar）来做 Router，让代码看上去就感觉甜甜的。<br><a id="more"></a><br>Tornado 中的 Router 略显平淡，怀念 Flask 的味道，于是很好奇的想知道 Flask 是如何使用这个魔法。通过阅读 Flask 的源码，我们也可以为 Tornado 实现了一个装饰器 Router。</p>
+<p>当然对于刚接触 Python 的人，也许很容易理解装饰器本质是设计模式中的装饰器模式。可是 Python 通过@一个实现装饰器的语法糖。本文的目的就是让 @ 不再神秘。</p>
+<h3 id="一切都是对象"><a href="#一切都是对象" class="headerlink" title="一切都是对象"></a>一切都是对象</h3><p>Python 里一切都是对象，当然这不代表一切都是女朋友。函数也是对象，因而可以当成参数传递，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_english</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'hello'</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_chinese</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'你好'</span></span><br><span class="line"> </span><br><span class="line">say_english()           <span class="comment"># hello</span></span><br><span class="line">say_chinese()           <span class="comment"># 你好</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">(say)</span>:</span></span><br><span class="line">    say()</span><br><span class="line"> </span><br><span class="line">greet(say_english)      <span class="comment"># hello</span></span><br><span class="line">greet(say_chinese)      <span class="comment"># 你好</span></span><br></pre></td></tr></table></figure>
+<p>我们的 greet 函数的参数，也是一个函数对象。可以传递这个参数对象。我们调用greet的时候，greet 内部进行函数参数的调用。</p>
+<h3 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h3><p>装饰模式，顾名思义，就是在调用目标函数之前，对这个函数对象进行装饰。比如一个对数据库操作的方法，我们在查询数据之前，需要连接一下数据库，当查询结束之后，需要再把连接断开关闭。正常的逻辑如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_db</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'connect db'</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">close_db</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'close db'</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">()</span>:</span></span><br><span class="line"> </span><br><span class="line">    connect_db()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'query the user'</span></span><br><span class="line">    close_db()</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">query_user()            <span class="comment"># connect db</span></span><br><span class="line">                        <span class="comment"># query the user</span></span><br><span class="line">                        <span class="comment"># close db</span></span><br></pre></td></tr></table></figure></p>
+<p>我们把 连接数据库(connect_db) 和 关闭连接 (close_db)都封装成了函数。 query_data 方法执行我们查询的具体逻辑。这样需要不同的查询方法，只需要把查询的逻辑也封装成一个方法就Ok啦<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'query some user'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_data</span><span class="params">(query)</span>:</span></span><br><span class="line"></span><br><span class="line">    connect_db()</span><br><span class="line">    query()</span><br><span class="line">    close_db()</span><br><span class="line"></span><br><span class="line">query_data(query_user)</span><br></pre></td></tr></table></figure></p>
+<p>把查询的函数对象传进来，符合开篇说的一切都是对象。装饰器完成啦。对，就这么简单，query_data 就是对 query_user 的装饰，当然你还可以写出 query_blog 等方法。</p>
+<p>等等，设想一种情况，在我们使用装饰函数之前，项目的代码已经有了大量的 query_user方法的调用。如果使用了query_data 包装。我们就不得不把之前 query_user() 的地方统统替换成 query_data(query_user)。怎么样才能减少对代码的改动呢？</p>
+<p>我们的出发点是为了保持之前的 query_user() 不改动，现在实际情况是调用 query_data(query_user)。如果 query_data 调用的时候，返回一个函数呢？例如下面的代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'query some user'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_data</span><span class="params">(query)</span>:</span></span><br><span class="line">    <span class="string">""" 定义装饰器，返回一个函数，对query进行wrapper包装 """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        connect_db()</span><br><span class="line">        query()</span><br><span class="line">        close_db()</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"><span class="comment"># 这里调用query_data进行实际装饰（注意装饰是动词）</span></span><br><span class="line">query_user = query_data(query_user)</span><br><span class="line"><span class="comment"># 调用被装饰后的函数query_user</span></span><br><span class="line">query_user()</span><br></pre></td></tr></table></figure></p>
+<p>这样一个完整的装饰器就完成了，比起前面的版本，我们不需要改动之前写好的 query_user 代码。一个关键点在于query_data 调用的时候，返回了一个 wrapper 函数，而这个wrapper 函数执行 query 函数调用前后的一些逻辑。另外一个关键就是调用装饰器 query_data 装饰函数。</p>
+<h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖@"></a>语法糖@</h3><p>前面的代码，可以使用 python的装饰器语法糖@，如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_data</span><span class="params">(query)</span>:</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        connect_db()</span><br><span class="line">        query()</span><br><span class="line">        close_db()</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 @ 调用装饰器进行装饰</span></span><br><span class="line"><span class="meta">@query_data</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'query some user'</span></span><br><span class="line"> </span><br><span class="line">query_user()</span><br></pre></td></tr></table></figure></p>
+<p>前面的 装饰器 调用进行装饰的时候，python 有一个语法糖。<br>如果给装饰器函数前面加一个@，我们可以理解为调用了一些装饰器函数，即 @query_data 等于 query_data()。当实际上，并不是这么使用，而是这么一个整体：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@query_data</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'query some user'</span></span><br></pre></td></tr></table></figure></p>
+<p>等价于<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">query_user</span> = query_data(query_user)</span><br></pre></td></tr></table></figure></p>
+<h3 id="被装饰函数参数"><a href="#被装饰函数参数" class="headerlink" title="被装饰函数参数"></a>被装饰函数参数</h3><p>我们被装饰的函数，往往带有参数，因此通过装饰器如何传递参数呢？回想一下，装饰器函数针对被装饰的函数进行装饰，使用的是返回一个 wrapper 函数。其实这个函数可以等同于被装饰的函数，只不过 wrapper 还做了更多的事情。被装饰的函数参数可以通过 wrapper 传递。如下：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def query_data(<span class="keyword">query</span>):</span><br><span class="line"> </span><br><span class="line">    def wrapper(<span class="keyword">count</span>):</span><br><span class="line">        connect_db()</span><br><span class="line">        <span class="keyword">query</span>(<span class="keyword">count</span>)</span><br><span class="line">        close_db()</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"> </span><br><span class="line">@query_data</span><br><span class="line">def query_user(<span class="keyword">count</span>):</span><br><span class="line">    <span class="keyword">print</span> '<span class="keyword">query</span> some user limit  &#123;<span class="keyword">count</span>&#125;'.<span class="keyword">format</span>(<span class="keyword">count</span>=<span class="keyword">count</span>)</span><br><span class="line"> </span><br><span class="line">query_user(<span class="keyword">count</span>=100)       # connect <span class="keyword">db</span></span><br><span class="line">                            # <span class="keyword">query</span> some user limit  100</span><br><span class="line">                            # <span class="keyword">close</span> <span class="keyword">db</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就实现了被装饰的函数传递参数。当然，位置参数和关键字参数，可变参数都可以。</p>
+<h3 id="装饰器参数"><a href="#装饰器参数" class="headerlink" title="装饰器参数"></a>装饰器参数</h3><p>在 flask 中，对视图函数的装饰是装饰器中传递 url 正则，即在装饰器中传递参数，和被装饰器的参数还不一样。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@app.router(<span class="string">'/user'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">user_page</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'user page'</span></span><br></pre></td></tr></table></figure></p>
+<p>我们如何定义router这个装饰器呢？其实只要在原先的装饰器外面再包裹一层，也就是针对装饰器进行装饰。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">router</span><span class="params">(url)</span>:</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">print</span> <span class="string">'router invoke url'</span>, url</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query_data</span><span class="params">(query)</span>:</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">print</span> <span class="string">'query_data invoke url'</span>, url</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(count)</span>:</span></span><br><span class="line">            connect_db()</span><br><span class="line">            query(count)</span><br><span class="line">            close_db()</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> query_data</span><br><span class="line"> </span><br><span class="line"><span class="meta">@router('/user')          # 首先调用了router函数， 输出 router invoke url /user， 进行@装饰，输出 'query_data invoke url', url</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">(count)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'query some user limit  &#123;count&#125;'</span>.format(count=count)</span><br><span class="line"> </span><br><span class="line">query_user(count=<span class="number">100</span>)   <span class="comment"># connect db</span></span><br><span class="line">                        <span class="comment"># query some user limit  100</span></span><br><span class="line">                        <span class="comment"># close db</span></span><br></pre></td></tr></table></figure></p>
+<p>@router() 这个语法糖看上去让人迷惑，其实也很好理解。这里可以看成两个步骤<br>第一步是调用 router 这个函数:<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">query_data</span> =  router(<span class="string">'/user'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>第二步则进行装饰:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@query_data</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_user</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>连起来的效果就是<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query_user = router()(<span class="name">query_data</span>(<span class="name">query_user</span>))</span><br></pre></td></tr></table></figure></p>
+<p>现在回想，@ 这个语法糖很甜吧。并且和python一样很好理解，也十分常用。</p>
+<p>当然，我们使用 装饰器是为了实现一些需要包装的方法，例如前面提到的 flask 的 router</p>
+
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2017/02/15/与自我沟通/" id="art-left" class="art-right">
+                <span class="next-title">
+                    保持与自我沟通<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2016/09/21/python-元类实现orm/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>python--元类实现orm
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

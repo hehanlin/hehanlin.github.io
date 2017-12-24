@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> python--元类实现orm · linqiong'blog </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+    <meta name="keywords" content="python, Nlvi" />
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年9月21日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                python--元类实现orm
+            
+            </h1>
+            
+                
+                    <div class="post-tags syuanpi riseIn-light back-3">
+                    
+                        <a href="/tags/python/">python</a>
+                    
+                    </div>
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <p>准备工作，创建一个Field类<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Field</span>(<span class="title">object</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name, column_type)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">self</span>.column_type = column_type</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;%s:%s&gt;'</span> % (<span class="keyword">self</span>.__class_<span class="number">_</span>.__name_<span class="number">_</span>, <span class="keyword">self</span>.name)</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>它的作用是<br>在Field类实例化时将得到两个参数，name和column_type，它们将被绑定为Field的私有属性，如果要将Field转化为字符串时，将返回“Field:XXX” ， XXX是传入的name名称。</p>
+<p>准备工作：创建StringField和IntergerField<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringField</span>(<span class="title">Field</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>(StringField, <span class="keyword">self</span>).__init_<span class="number">_</span>(name, <span class="string">'varchar(100)'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IntegerField</span>(<span class="title">Field</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>(IntegerField, <span class="keyword">self</span>).__init_<span class="number">_</span>(name, <span class="string">'bigint'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>它的作用是<br>在StringField,IntegerField实例初始化时，时自动调用父类的初始化方式。</p>
+<h3 id="道生一"><a href="#道生一" class="headerlink" title="道生一"></a>道生一</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModelMetaclass</span><span class="params">(type)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> name==<span class="string">'Model'</span>:</span><br><span class="line">            <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br><span class="line">        print(<span class="string">'Found model: %s'</span> % name)</span><br><span class="line">        mappings = dict()</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> attrs.items():</span><br><span class="line">            <span class="keyword">if</span> isinstance(v, Field):</span><br><span class="line">                print(<span class="string">'Found mapping: %s ==&gt; %s'</span> % (k, v))</span><br><span class="line">                mappings[k] = v</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> mappings.keys():</span><br><span class="line">            attrs.pop(k)</span><br><span class="line">        attrs[<span class="string">'__mappings__'</span>] = mappings <span class="comment"># 保存属性和列的映射关系</span></span><br><span class="line">        attrs[<span class="string">'__table__'</span>] = name <span class="comment"># 假设表名和类名一致</span></span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br></pre></td></tr></table></figure>
+<p>它做了以下几件事</p>
+<ol>
+<li>创建一个新的字典mapping<br>2 .将每一个类的属性，通过.items()遍历其键值对。如果值是Field类，则打印键值，并将这一对键值绑定到mapping字典上。</li>
+<li>将刚刚传入值为Field类的属性删除。</li>
+<li>创建一个专门的<strong>mappings</strong>属性，保存字典mapping。</li>
+<li>创建一个专门的<strong>table</strong>属性，保存传入的类的名称。</li>
+</ol>
+<h3 id="一生二"><a href="#一生二" class="headerlink" title="一生二"></a>一生二</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Model</span><span class="params">(dict, metaclass=ModelMetaclass)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwarg)</span>:</span></span><br><span class="line">        super(Model, self).__init__(**kwarg)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> self[key]</span><br><span class="line">        <span class="keyword">except</span> KeyError:</span><br><span class="line">            <span class="keyword">raise</span> AttributeError(<span class="string">"'Model' object has no attribute '%s'"</span> % key)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        self[key] = value</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 模拟建表操作</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        fields = []</span><br><span class="line">        args = []</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> self.__mappings__.items():</span><br><span class="line">            fields.append(v.name)</span><br><span class="line">            args.append(getattr(self, k, <span class="keyword">None</span>))</span><br><span class="line">        sql = <span class="string">'insert into %s (%s) values (%s)'</span> % (self.__table__, <span class="string">','</span>.join(fields), <span class="string">','</span>.join([str(i) <span class="keyword">for</span> i <span class="keyword">in</span> args]))</span><br><span class="line">        print(<span class="string">'SQL: %s'</span> % sql)</span><br><span class="line">        print(<span class="string">'ARGS: %s'</span> % str(args))</span><br></pre></td></tr></table></figure>
+<p>如果从Model创建一个子类User：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Model)</span>:</span></span><br><span class="line">    <span class="comment"># 定义类的属性到列的映射：</span></span><br><span class="line">    id = IntegerField(<span class="string">'id'</span>)</span><br><span class="line">    name = StringField(<span class="string">'username'</span>)</span><br><span class="line">    email = StringField(<span class="string">'email'</span>)</span><br><span class="line">    password = StringField(<span class="string">'password'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>这时<br>id= IntegerField(‘id’)就会自动解析为：</p>
+<p>Model.<strong>setattr</strong>(self, ‘id’, IntegerField(‘id’))</p>
+<p>因为IntergerField(‘id’)是Field的子类的实例，自动触发元类的<strong>new</strong>，所以将IntergerField(‘id’)存入<strong>mappings</strong>并删除这个键值对。</p>
+<h3 id="二生三、三生万物"><a href="#二生三、三生万物" class="headerlink" title="二生三、三生万物"></a>二生三、三生万物</h3><p>当你初始化一个实例的时候并调用save()方法时候<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u = User(<span class="attribute">id</span>=12345, <span class="attribute">name</span>=<span class="string">'Batman'</span>, <span class="attribute">email</span>=<span class="string">'batman@nasa.org'</span>, <span class="attribute">password</span>=<span class="string">'iamback'</span>)</span><br><span class="line">u.save()</span><br></pre></td></tr></table></figure></p>
+<p>这时先完成了二生三的过程：</p>
+<ol>
+<li>先调用Model.<strong>setattr</strong>，将键值载入私有对象</li>
+<li>然后调用元类的“天赋”，ModelMetaclass.<strong>new</strong>，将Model中的私有对象，只要是Field的实例，都自动存入u.<strong>mappings</strong>。</li>
+</ol>
+<p>接下来完成了三生万物的过程：</p>
+<p>通过u.save()模拟数据库存入操作。这里我们仅仅做了一下遍历<strong>mappings</strong>操作，虚拟了sql并打印，在现实情况下是通过输入sql语句与数据库来运行。</p>
+<p>输出结果为<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Found <span class="string">model:</span> User</span><br><span class="line">Found <span class="string">mapping:</span> name ==&gt; &lt;<span class="string">StringField:</span>username&gt;</span><br><span class="line">Found <span class="string">mapping:</span> password ==&gt; &lt;<span class="string">StringField:</span>password&gt;</span><br><span class="line">Found <span class="string">mapping:</span> id ==&gt; &lt;<span class="string">IntegerField:</span>id&gt;</span><br><span class="line">Found <span class="string">mapping:</span> email ==&gt; &lt;<span class="string">StringField:</span>email&gt;</span><br><span class="line"><span class="string">SQL:</span> insert into User (username,password,id,email) values (Batman,iamback,<span class="number">12345</span>,batman<span class="meta">@nasa</span>.org)</span><br><span class="line"><span class="string">ARGS:</span> [<span class="string">'Batman'</span>, <span class="string">'iamback'</span>, <span class="number">12345</span>, <span class="string">'batman@nasa.org'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>end！！！</p>
+
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2016/11/01/python-装饰器/" id="art-left" class="art-right">
+                <span class="next-title">
+                    python--装饰器<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2016/09/15/python-元类/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>python--元类
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

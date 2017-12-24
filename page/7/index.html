@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+    linqiong'blog
+    
+        | jobbole DA of JinCheng
+    
+</title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+
+<section class="posts">
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月8日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/08/bui表单验证规则/">bui表单验证规则</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>做离石啦项目时整理了下阿里的bui使用规则。</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2015/05/08/bui表单验证规则/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月7日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/07/又是充实的一天/">又是充实的一天</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>又是充实的一天，今天和小伙伴们把阿里写的gui看了下，感觉自己的水平与大神们相比还差的好远，一定要继续努力啊，哼哼，早晚有一天我要让自己也成为权威！</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/06/数据结构：删除二叉排序树上的结点/">数据结构：删除二叉排序树上的结点</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <a id="more"></a>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">#include <span class="string">"malloc.h"</span></span><br><span class="line">#include <span class="string">"stdio.h"</span></span><br><span class="line"></span><br><span class="line">typedef struct binode</span><br><span class="line">&#123;</span><br><span class="line">    int <span class="keyword">data</span>;</span><br><span class="line">    struct binode * lchild,* rchild;</span><br><span class="line">&#125;BITNODE,* BITREE;</span><br><span class="line"></span><br><span class="line">BITREE insertbst(BITREE s, BITREE t)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (t==NULL)</span><br><span class="line">        t = s;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    <span class="function"><span class="title">if</span>(s-&gt;</span><span class="function"><span class="title">data</span>&lt;t-&gt;</span><span class="keyword">data</span>)</span><br><span class="line">        <span class="function"><span class="title">t</span>-&gt;</span><span class="function"><span class="title">lchild</span> = insertbst(s,t-&gt;</span>lchild);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="function"><span class="title">t</span>-&gt;</span><span class="function"><span class="title">rchild</span> = insertbst(s,t-&gt;</span>rchild);</span><br><span class="line"></span><br><span class="line">return t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BITREE createordbt()</span><br><span class="line">&#123;</span><br><span class="line">    BITREE s,t;</span><br><span class="line">    int x;</span><br><span class="line">    t = NULL;</span><br><span class="line">    printf(<span class="string">"\ninput data please:"</span>);</span><br><span class="line">    scanf(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>(x!=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        s = (BITREE)malloc(sizeof(BITREE));</span><br><span class="line">        <span class="function"><span class="title">s</span>-&gt;</span><span class="keyword">data</span> = x;</span><br><span class="line">        <span class="function"><span class="title">s</span>-&gt;</span>lchild = NULL;</span><br><span class="line">        <span class="function"><span class="title">s</span>-&gt;</span>rchild = NULL;</span><br><span class="line">        t = insertbst(s,t);</span><br><span class="line">        scanf(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    return t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BITREE delete(BITREE t,int key)</span><br><span class="line">&#123;</span><br><span class="line">    BITREE p,q,r,s;</span><br><span class="line">    p = t;</span><br><span class="line">    q = NULL;</span><br><span class="line">    <span class="function"><span class="title">while</span>((p != NULL) &amp;&amp; (p-&gt;</span><span class="keyword">data</span> != key))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="title">if</span> (key == p-&gt;</span><span class="keyword">data</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="function"><span class="title">if</span>(key&lt;p-&gt;</span><span class="keyword">data</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            q = p;</span><br><span class="line">            <span class="function"><span class="title">p</span> = p-&gt;</span>lchild;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            q = p;</span><br><span class="line">            <span class="function"><span class="title">p</span> = p-&gt;</span>rchild;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(p == NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(<span class="string">"no find"</span>);</span><br><span class="line">            exit();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="function"><span class="title">if</span>((p-&gt;</span><span class="function"><span class="title">lchild</span> == NULL) &amp;&amp; (p-&gt;</span>rchild == NULL))</span><br><span class="line">            <span class="keyword">if</span>(p == t)</span><br><span class="line">            t = NULL;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            <span class="function"><span class="title">if</span>(p == q-&gt;</span>lchild)</span><br><span class="line">            <span class="function"><span class="title">q</span>-&gt;</span>lchild = NULL;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            <span class="function"><span class="title">q</span>-&gt;</span>rchild = NULL;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            <span class="function"><span class="title">if</span>((p-&gt;</span><span class="function"><span class="title">lchild</span> == NULL) || (p-&gt;</span>rchild == NULL))</span><br><span class="line">            <span class="keyword">if</span>(p == t)</span><br><span class="line">            <span class="function"><span class="title">if</span>(p-&gt;</span>lchild == NULL)</span><br><span class="line">            <span class="function"><span class="title">t</span> = p -&gt;</span> rchild;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            <span class="function"><span class="title">t</span> = p -&gt;</span> lchild;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="function"><span class="title">if</span>((p == q -&gt;</span> <span class="function"><span class="title">lchild</span>) &amp;&amp; (p -&gt;</span> lchild != NULL))</span><br><span class="line">                <span class="function"><span class="title">q</span> -&gt;</span> <span class="function"><span class="title">lchild</span> = p -&gt;</span> lchild;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                <span class="function"><span class="title">if</span>((p == q -&gt;</span> <span class="function"><span class="title">lchild</span>) &amp;&amp; (p -&gt;</span> rchild != NULL))</span><br><span class="line">                <span class="function"><span class="title">q</span> -&gt;</span> <span class="function"><span class="title">lchild</span> = p -&gt;</span> rchild;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                <span class="function"><span class="title">if</span>((p == q -&gt;</span> <span class="function"><span class="title">rchild</span>) &amp;&amp; (p -&gt;</span> lchild != NULL))</span><br><span class="line">                <span class="function"><span class="title">q</span> -&gt;</span> <span class="function"><span class="title">rchild</span> = p -&gt;</span> lchild;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                <span class="function"><span class="title">if</span>((p == q -&gt;</span> <span class="function"><span class="title">rchild</span>) &amp;&amp; (p -&gt;</span> rchild != NULL))</span><br><span class="line">                <span class="function"><span class="title">q</span> -&gt;</span> <span class="function"><span class="title">rchild</span> = p -&gt;</span> rchild;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            <span class="function"><span class="title">if</span>((p -&gt;</span> <span class="function"><span class="title">lchild</span> != NULL) &amp;&amp; (p -&gt;</span> rchild != NULL))</span><br><span class="line">            &#123;</span><br><span class="line">                r = p;</span><br><span class="line">                <span class="function"><span class="title">s</span> = p -&gt;</span> lchild;</span><br><span class="line">                <span class="function"><span class="title">while</span>(s -&gt;</span> rchild != NULL)</span><br><span class="line">                &#123;</span><br><span class="line">                    r = s;</span><br><span class="line">                    <span class="function"><span class="title">s</span> = s -&gt;</span> rchild;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="function"><span class="title">p</span> -&gt;</span> <span class="function"><span class="title">data</span> = s -&gt;</span> <span class="keyword">data</span>;</span><br><span class="line">                <span class="keyword">if</span>(r == p)</span><br><span class="line">                <span class="function"><span class="title">p</span> -&gt;</span> <span class="function"><span class="title">lchild</span> = s -&gt;</span> lchild;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                <span class="function"><span class="title">r</span> -&gt;</span> <span class="function"><span class="title">rchild</span> = s -&gt;</span> lchild;</span><br><span class="line">                p = s;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        free(p);</span><br><span class="line">        return(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inorder(BITREE t)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(t != NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="title">inorder</span>(t -&gt;</span> lchild);</span><br><span class="line">        <span class="function"><span class="title">printf</span>("%d",t -&gt;</span> <span class="keyword">data</span>);</span><br><span class="line">        <span class="function"><span class="title">inorder</span>(t -&gt;</span> rchild);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">    BITREE root;</span><br><span class="line">    int x;</span><br><span class="line">    root = createordbt();</span><br><span class="line">    printf(<span class="string">"the inorder is:"</span>);</span><br><span class="line">    inorder(root);</span><br><span class="line">    printf(<span class="string">"\ninput a deleted detum to x:"</span>);</span><br><span class="line">    scanf(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">    root = delete(root,x);</span><br><span class="line">    printf(<span class="string">"the inorder is:"</span>);</span><br><span class="line">    inorder(root);</span><br><span class="line">    printf(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//input:6 4 8 3 7 9 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//input a deleted detum to x: 8</span></span><br></pre></td></tr></table></figure>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/06/数据结构：二叉排序树/">数据结构：二叉排序树</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"malloc.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">binode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">int</span> data;</span><br><span class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">binode</span> * <span class="title">lchild</span>,* <span class="title">rchild</span>;</span></span><br><span class="line">&#125;BITNODE,* BITREE;</span><br><span class="line"></span><br><span class="line"><span class="function">BITREE <span class="title">insertbst</span><span class="params">(BITREE s,BITREE t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(t == <span class="literal">NULL</span>)</span><br><span class="line">  t = s;</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">  <span class="keyword">if</span>(s-&gt;data&lt;t-&gt;data)</span><br><span class="line">   t-&gt;lchild = insertbst(s,t-&gt;lchild);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">   t-&gt;rchild = insertbst(s,t-&gt;rchild);</span><br><span class="line"> <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">BITREE <span class="title">createordbt</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> BITREE s,t;</span><br><span class="line"> <span class="keyword">int</span> x;</span><br><span class="line"> t = <span class="literal">NULL</span>;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\ninput data please:"</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line"> <span class="keyword">while</span>(x!=<span class="number">0</span>)</span><br><span class="line"> &#123;</span><br><span class="line">  s = (BITREE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BITREE));</span><br><span class="line">  s-&gt;data = x;</span><br><span class="line">  s-&gt;lchild = <span class="literal">NULL</span>;</span><br><span class="line">  s-&gt;rchild = <span class="literal">NULL</span>;</span><br><span class="line">  t = insertbst(s,t);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder</span><span class="params">(BITREE t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(t!=<span class="literal">NULL</span>)</span><br><span class="line"> &#123;</span><br><span class="line">  inorder(t-&gt;lchild);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d"</span>,t-&gt;data);</span><br><span class="line">  inorder(t-&gt;rchild);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line"> BITREE root;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> root = createordbt();</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\nthe inorder is:"</span>);</span><br><span class="line"> inorder(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//input: 3 5 6 2 8 5 0</span></span><br></pre></td></tr></table></figure>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/06/最后总结一下今天学的东西/">最后总结一下今天学的东西</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>最后总结一下今天学的东西，</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2015/05/06/最后总结一下今天学的东西/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年5月6日</span>
+                
+                
+                    <span class="post-category"><a href="/categories/杂谈/">杂谈</a></span>
+                
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/05/06/每天都学到这么晚/">每天都学到这么晚</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>已经很晚了，想要睡了，每天都学到这么晚的时候才想到要注意身体，我相信这是每个父母亲都会和子女们说的话，同样，我的爱人也要和我说要注意身体，好好休息，老婆，爸爸妈妈，我爱你们，我一定要证明给你们看，贺汉林他是那么的独一无二，他一定会成为一个权威！</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+</section>
+    
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/page/6/">< 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    </nav>
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> socket--实现 · linqiong'blog </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+    <meta name="keywords" content="python, Nlvi" />
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年6月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                socket--实现
+            
+            </h1>
+            
+                
+                    <div class="post-tags syuanpi riseIn-light back-3">
+                    
+                        <a href="/tags/python/">python</a>
+                    
+                    </div>
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>Socket 作为一种通用的技术规范，首次是由 Berkeley 大学在 1983 为 4.2BSD Unix 提供的，后来逐渐演化为 POSIX 标准。Socket API 是由操作系统提供的一个编程接口，让应用程序可以控制使用 socket 技术。Unix 哲学中有一条一切皆为文件，所以 socket 和 file 的 API 使用很类似：可以进行read、write、open、close等操作。</p>
+<a id="more"></a>
+<p>现在的网络系统是分层的，理论上有OSI模型，工业界有TCP/IP协议簇。其对比如下：</p>
+<p><img src="/images/imagesocketq1.png" alt="upload successful"><br>每层上都有其相应的协议，socket API 不属于TCP/IP协议簇，只是操作系统提供的一个用于网络编程的接口，工作在应用层与传输层之间：</p>
+<p><img src="/images/imagesocketq2.png" alt="upload successful"><br>我们平常浏览网站所使用的http协议，收发邮件用的smtp与imap，都是基于 socket API 构建的。</p>
+<p>一个 socket，包含两个必要组成部分：</p>
+<ol>
+<li>地址，由 ip 与 端口组成，像192.168.0.1:80。</li>
+<li>协议，socket 所是用的传输协议，目前有三种：TCP、UDP、raw IP。</li>
+</ol>
+<p>地址与协议可以确定一个socket；一台机器上，只允许存在一个同样的socket。TCP 端口 53 的 socket 与 UDP 端口 53 的 socket 是两个不同的 socket。</p>
+<p>根据 socket 传输数据方式的不同（使用协议不同），可以分为以下三种：</p>
+<p>Stream sockets，也称为“面向连接”的 socket，使用 TCP 协议。实际通信前需要进行连接，传输的数据没有特定的结构，所以高层协议需要自己去界定数据的分隔符，但其优势是数据是可靠的。<br>Datagram sockets，也称为“无连接”的 socket，使用 UDP 协议。实际通信前不需要连接，一个优势时 UDP 的数据包自身是可分割的（self-delimiting），也就是说每个数据包就标示了数据的开始与结束，其劣势是数据不可靠。</p>
+<p>Raw sockets，通常用在路由器或其他网络设备中，这种 socket 不经过TCP/IP协议簇中的传输层（transport layer），直接由网络层（Internet layer）通向应用层（Application layer），所以这时的数据包就不会包含 tcp 或 udp 头信息。</p>
+<p><img src="/images/imagesocketq3.png" alt="upload successful"></p>
+<h3 id="Python-socket-API"><a href="#Python-socket-API" class="headerlink" title="Python socket API"></a>Python socket API</h3><p>Python 里面用(ip, port)的元组来表示 socket 的地址属性，用AF_*来表示协议类型。<br>数据通信有两组动词可供选择：send/recv 或 read/write。</p>
+<blockquote>
+<p>read/write 操作的具有 buffer 的“文件”，所以在进行读写后需要调用flush方法去真正发送或读取数据，否则数据会一直停留在缓冲区内。</p>
+<h4 id="TCP-socket"><a href="#TCP-socket" class="headerlink" title="TCP socket"></a>TCP socket</h4><p>TCP socket 由于在通向前需要建立连接，所以其模式较 UDP socket 负责些。具体如下：</p>
+</blockquote>
+<p><img src="/images/imagesocketq4.png" alt="upload successful"><br>每个API 的具体含义这里不在赘述，可以查看手册，这里给出 Python 语言的实现的 echo server。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo_server.py</span></span><br><span class="line"><span class="comment"># coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"><span class="comment"># 设置 SO_REUSEADDR 后,可以立即使用 TIME_WAIT 状态的 socket</span></span><br><span class="line">sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">sock.bind((<span class="string">''</span>, <span class="number">5500</span>))</span><br><span class="line">sock.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span><span class="params">(client_sock, addr)</span>:</span></span><br><span class="line">    print(<span class="string">'new client from %s:%s'</span> % addr)</span><br><span class="line">    msg = client_sock.recv(<span class="number">1024</span>)</span><br><span class="line">    client_sock.send(msg)</span><br><span class="line">    client_sock.close()</span><br><span class="line">    print(<span class="string">'client[%s:%s] socket closed'</span> % addr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        client_sock, addr = sock.accept()</span><br><span class="line">        handler(client_sock, addr)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo_client.py</span></span><br><span class="line"><span class="comment"># coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">sock.connect((<span class="string">''</span>, <span class="number">5500</span>))</span><br><span class="line">sock.send(<span class="string">'hello socket world'</span>)</span><br><span class="line"><span class="keyword">print</span> sock.recv(<span class="number">1024</span>)</span><br></pre></td></tr></table></figure>
+<p>上面简单的echo server 代码中有一点需要注意的是：server 端的 socket 设置了SO_REUSEADDR为1，目的是可以立即使用处于TIME_WAIT状态的socket，那么TIME_WAIT又是什么意思呢？后面在讲解 tcp 状态变更图时再做详细介绍。</p>
+<h4 id="UDP-socket"><a href="#UDP-socket" class="headerlink" title="UDP socket"></a>UDP socket</h4><p><img src="/images/imagesocketq5.png" alt="upload successful"><br>UDP socket server 端代码在进行bind后，无需调用listen方法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># udp_echo_server.py</span></span><br><span class="line"><span class="comment"># coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"><span class="comment"># 设置 SO_REUSEADDR 后,可以立即使用 TIME_WAIT 状态的 socket</span></span><br><span class="line">sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">sock.bind((<span class="string">''</span>, <span class="number">5500</span>))</span><br><span class="line"><span class="comment"># 没有调用 listen</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        data, addr = sock.recvfrom(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'new client from %s:%s'</span> % addr)</span><br><span class="line">        sock.sendto(data, addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># udp_echo_client.py</span></span><br><span class="line"><span class="comment"># coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">udp_server_addr = (<span class="string">''</span>, <span class="number">5500</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line">    data_to_sent = <span class="string">'hello udp socket'</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        sent = sock.sendto(data_to_sent, udp_server_addr)</span><br><span class="line">        data, server = sock.recvfrom(<span class="number">1024</span>)</span><br><span class="line">        print(<span class="string">'receive data:[%s] from %s:%s'</span> % ((data,) + server))</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        sock.close()</span><br></pre></td></tr></table></figure></p>
+<h4 id="常见陷阱"><a href="#常见陷阱" class="headerlink" title="常见陷阱"></a>常见陷阱</h4><h5 id="忽略返回值"><a href="#忽略返回值" class="headerlink" title="忽略返回值"></a>忽略返回值</h5><p>本文中的 echo server 示例因为篇幅限制，也忽略了返回值。网络通信是个非常复杂的问题，通常无法保障通信双方的网络状态，很有可能在发送/接收数据时失败或部分失败。所以有必要对发送/接收函数的返回值进行检查。本文中的 tcp echo client 发送数据时，正确写法应该如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">total_send = <span class="number">0</span></span><br><span class="line">content_length = len(data_to_sent)</span><br><span class="line"><span class="keyword">while</span> total_send &lt; content_length:</span><br><span class="line">    sent = sock.send(data_to_sent[total_send:])</span><br><span class="line">    <span class="keyword">if</span> sent == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">"socket connection broken"</span>)</span><br><span class="line">    total_send += total_send + sent</span><br></pre></td></tr></table></figure></p>
+<p>send/recv操作的是网络缓冲区的数据，它们不必处理传入的所有数据。</p>
+<blockquote>
+<p>一般来说，当网络缓冲区填满时，send函数就返回了；当网络缓冲区被清空时，recv 函数就返回。<br>当 recv 函数返回0时，意味着对端已经关闭。</p>
+</blockquote>
+<p>可以通过下面的方式设置缓冲区大小。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, buffer_size)</span><br></pre></td></tr></table></figure></p>
+<h5 id="认为-TCP-具有-framing"><a href="#认为-TCP-具有-framing" class="headerlink" title="认为 TCP 具有 framing"></a>认为 TCP 具有 framing</h5><p>TCP 不提供 framing，这使得其很适合于传输数据流。这是其与 UDP 的重要区别之一。UDP 是一个面向消息的协议，能保持一条消息在发送者与接受者之间的完备性。</p>
+<p><img src="/images/imagesocketq6.png" alt="upload successful"></p>
+<h4 id="TCP-的状态机"><a href="#TCP-的状态机" class="headerlink" title="TCP 的状态机"></a>TCP 的状态机</h4><p>在前面echo server 的示例中，提到了TIME_WAIT状态，为了正式介绍其概念，需要了解下 TCP 从生成到结束的状态机器。</p>
+<p><img src="/images/imagesocketq7.png" alt="upload successful"><br>这个状图转移图非常非常关键，也比较复杂，我自己为了方便记忆，对这个图进行了拆解，仔细分析这个图，可以得出这样一个结论，连接的打开与关闭都有被动（passive）与主动（active）两种，主动关闭时，涉及到的状态转移最多，包括FIN_WAIT_1、FIN_WAIT_2、CLOSING、TIME_WAIT。</p>
+<p>此外，由于 TCP 是可靠的传输协议，所以每次发送一个数据包后，都需要得到对方的确认（ACK），有了上面这两个知识后，再来看下面的图：</p>
+<p><img src="/images/imagesocketq8.png" alt="upload successful"></p>
+<ol>
+<li>在主动关闭连接的 socket 调用 close方法的同时，会向被动关闭端发送一个 FIN</li>
+<li>对端收到FIN后，会向主动关闭端发送ACK进行确认，这时被动关闭端处于 CLOSE_WAIT 状态</li>
+<li>当被动关闭端调用close方法进行关闭的同时向主动关闭端发送 FIN 信号，接收到 FIN 的主动关闭端这时就处于 TIME_WAIT 状态</li>
+<li>这时主动关闭端不会立刻转为 CLOSED 状态，而是需要等待 2MSL（max segment life，一个数据包在网络传输中最大的生命周期），以确保被动关闭端能够收到最后发出的 ACK。如果被动关闭端没有收到最后的 ACK，那么被动关闭端就会重新发送 FIN，所以处于TIME_WAIT的主动关闭端会再次发送一个 ACK 信号，这么一来（FIN来）一回（ACK），正好是两个 MSL 的时间。如果等待的时间小于 2MSL，那么新的socket就可以收到之前连接的数据。</li>
+</ol>
+<p>前面 echo server 的示例也说明了，处于 TIME_WAIT 并不是说一定不能使用，可以通过设置 socket 的 SO_REUSEADDR 属性以达到不用等待 2MSL 的时间就可以复用socket 的目的，当然，这仅仅适用于测试环境，正常情况下不要修改这个属性。</p>
+<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><h5 id="HTTP-UA"><a href="#HTTP-UA" class="headerlink" title="HTTP UA"></a>HTTP UA</h5><p>http 协议是如今万维网的基石，可以通过 socket API 来简单模拟一个浏览器（UA）是如何解析 HTTP 协议数据的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">baidu_ip = socket.gethostbyname(<span class="string">'baidu.com'</span>)</span><br><span class="line">sock.connect((baidu_ip, <span class="number">80</span>))</span><br><span class="line">print(<span class="string">'connected to %s'</span> % baidu_ip)</span><br><span class="line"></span><br><span class="line">req_msg = [</span><br><span class="line">    <span class="string">'GET / HTTP/1.1'</span>,</span><br><span class="line">    <span class="string">'User-Agent: curl/7.37.1'</span>,</span><br><span class="line">    <span class="string">'Host: baidu.com'</span>,</span><br><span class="line">    <span class="string">'Accept: */*'</span>,</span><br><span class="line">]</span><br><span class="line">delimiter = <span class="string">'\r\n'</span></span><br><span class="line"></span><br><span class="line">sock.send(delimiter.join(req_msg))</span><br><span class="line">sock.send(delimiter)</span><br><span class="line">sock.send(delimiter)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'%sreceived%s'</span> % (<span class="string">'-'</span>*<span class="number">20</span>, <span class="string">'-'</span>*<span class="number">20</span>))</span><br><span class="line">http_response = sock.recv(<span class="number">4096</span>)</span><br><span class="line">print(http_response)</span><br></pre></td></tr></table></figure></p>
+<p>运行上面的代码可以得到下面的输出<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--------------------received--------------------</span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Server: Apache</span><br><span class="line">ETag: <span class="string">"51-47cf7e6ee8400"</span></span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Content-Length: <span class="number">81</span></span><br><span class="line">Cache-Control: max-age=<span class="number">86400</span></span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>http_response是通过直接调用recv(4096)得到的，万一真正的返回大于这个值怎么办？我们前面知道了 TCP 协议是面向流的，它本身并不关心消息的内容，需要应用程序自己去界定消息的边界，对于应用层的 HTTP 协议来说，有几种情况，最简单的一种时通过解析返回值头部的Content-Length属性，这样就知道body的大小了，对于 HTTP 1.1版本，支持Transfer-Encoding: chunked传输，对于这种格式，这里不在展开讲解，大家只需要知道， TCP 协议本身无法区分消息体就可以了。</p>
+<h5 id="Unix-domain-socket"><a href="#Unix-domain-socket" class="headerlink" title="Unix_domain_socket"></a>Unix_domain_socket</h5><p>UDS 用于同一机器上不同进程通信的一种机制，其API适用与 network socket 很类似。只是其连接地址为本地文件而已。</p>
+<h5 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h5><p>ping 命令作为检测网络联通性最常用的工具，其适用的传输协议既不是TCP，也不是 UDP，而是 ICMP，利用 raw sockets，我们可以适用纯 Python 代码来实现其功能。</p>
+
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2017/06/30/不定期停更/" id="art-left" class="art-right">
+                <span class="next-title">
+                    不定期停更<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2017/05/12/5-12/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>5.12
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> php定义function时,函数名前加&符号是什么意思？ · linqiong'blog </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+    <meta name="keywords" content="php, Nlvi" />
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年8月5日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                php定义function时,函数名前加&符号是什么意思？
+            
+            </h1>
+            
+                
+                    <div class="post-tags syuanpi riseIn-light back-3">
+                    
+                        <a href="/tags/php/">php</a>
+                    
+                    </div>
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <p>在PHP中&amp;符号即传的是变量的引用而不是拷贝,引用意味着用不同的名字访问同一个变量内容。这并不像 C 的指针，它们是符号表别名。注意在 PHP 中，变量名和变量内容是不一样的，因此同样的内容可以有不同的名字。最接近的比喻是 Unix 的文件名和文件本身 － 变量名是目录条目，而变量内容则是文件本身。引用可以被看作是 Unix 文件系统中的紧密连接。<br><a id="more"></a><br>PHP 的引用允许你用两个变量来指向同一个内容。意思是，当你这样做时：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php">$a =&amp;$b </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这意味着 $a 和 $b 指向了同一个变量。<br>注: $a 和 $b 在这里是完全相同的，这并不是 $a 指向了 $b 或者相反，而是 $a 和 $b 指向了同一个地方。<br>同样的语法可以用在函数中，它返回引用，以及用在 new 运算符中（PHP 4.0.4 以及以后版本）：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php">$bar =&amp; <span class="keyword">new</span> fooclass(); </span></span><br><span class="line"><span class="php">$foo =&amp; find_var ($bar); </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>注: 不用 &amp; 运算符导致对象生成了一个拷贝。如果你在类中用<code>$this</code>，它将作用于该类当前的实例。没有用 &amp; 的赋值将拷贝这个实例（例如对象）并且 <code>$this</code> 将作用于这个拷贝上，这并不总是想要的结果。由于性能和内存消耗的问题，通常你只想工作在一个实例上面。<br>尽管你可以用 @ 运算符来关闭构造函数中的任何错误信息，例如用 @new，但用 &amp;new 语句时这不起效果。这是 Zend 引擎的一个限制并且会导致一个解析错误。<br>引用做的第二件事是用引用传递变量。这是通过在函数内建立一个本地变量并且该变量在呼叫范围内引用了同一个内容来实现的。例如： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">(&amp;$var)</span> </span>&#123; </span></span><br><span class="line"><span class="php">$var++; </span></span><br><span class="line"><span class="php">&#125; </span></span><br><span class="line"><span class="php">$a=<span class="number">5</span>; </span></span><br><span class="line"><span class="php">foo ($a); </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>将使 $a 变成 6。这是因为在 foo 函数中变量 $var 指向了和 $a 指向的同一个内容。更多详细解释见引用传递。<br>引用做的第三件事是引用返回。<br>引用不是什么<br>如前所述，引用不是指针。这意味着下面的结构不会产生你预期的效果： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">(&amp;$var)</span></span>&#123; </span></span><br><span class="line"><span class="php">$var =&amp; $GLOBALS[<span class="string">"baz"</span>]; </span></span><br><span class="line"><span class="php">&#125; </span></span><br><span class="line"><span class="php">foo($bar); </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这将使 foo 函数中的 $var 变量在函数调用时和 $bar 绑定在一起，但接着又被重新绑定到了 $GLOBALS[“baz”] 上面。不可能通过引用机制将 $bar 在函数调用范围内绑定到别的变量上面，因为在函数 foo 中并没有变量 $bar（它被表示为 $var，但是 $var 只有变量内容而没有调用符号表中的名字到值的绑定）。<br>引用传递<br>你可以将一个<br>变量通过引用传递给函数，这样该函数就可以修改其参数的值。语法如下： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">(&amp;$var)</span> </span>&#123; </span></span><br><span class="line"><span class="php">$var++; </span></span><br><span class="line"><span class="php">&#125; </span></span><br><span class="line"><span class="php">$a=<span class="number">5</span>; </span></span><br><span class="line"><span class="php">foo ($a); </span></span><br><span class="line"><span class="php"><span class="comment">// $a is 6 here </span></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>注意在函数调用时没有引用符号 － 只有函数定义中有。光是函数定义就足够使参数通过引用来正确传递了。<br>以下内容可以通过引用传递：<br>变量，例如 foo($a)<br>New 语句，例如 foo(new foobar())<br>从函数中返回的引用，例如： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php"><span class="function"><span class="keyword">function</span> &amp;<span class="title">bar</span><span class="params">()</span> </span>&#123; </span></span><br><span class="line"><span class="php">$a = <span class="number">5</span>; </span></span><br><span class="line"><span class="php"><span class="keyword">return</span> $a; </span></span><br><span class="line"><span class="php">&#125; </span></span><br><span class="line"><span class="php">foo(bar()); </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>详细解释见引用返回。<br>任何其它表达式都不能通过引用传递，结果未定义。例如下面引用传递的例子是无效的： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php"><span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">()</span></span>&#123; <span class="comment">// Note the missing &amp; </span></span></span><br><span class="line"><span class="php">$a = <span class="number">5</span>; </span></span><br><span class="line"><span class="php"><span class="keyword">return</span> $a; </span></span><br><span class="line"><span class="php">&#125; </span></span><br><span class="line"><span class="php">foo(bar()); </span></span><br><span class="line"><span class="php">foo($a = <span class="number">5</span>) <span class="comment">// 表达式，不是变量 </span></span></span><br><span class="line"><span class="php">foo(<span class="number">5</span>) <span class="comment">// 常量，不是变量 </span></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这些条件是 PHP 4.0.4 以及以后版本有的。<br>引用返回<br>引用返回用在当你想用函数找到引用应该被绑定在哪一个变量上面时。当返回引用时，使用此语法： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php"><span class="function"><span class="keyword">function</span> &amp;<span class="title">find_var</span> <span class="params">($param)</span></span>&#123; </span></span><br><span class="line"><span class="php"><span class="comment">/* ...code... */</span> </span></span><br><span class="line"><span class="php"><span class="keyword">return</span> $found_var; </span></span><br><span class="line"><span class="php">&#125; </span></span><br><span class="line"><span class="php">$foo =&amp; find_var ($bar); </span></span><br><span class="line"><span class="php">$foo-&gt;x = <span class="number">2</span>; </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>本例中 find_var 函数所返回的对象的属性将被设定（译者：指的是 <code>$foo-&gt;x = 2;</code> 语句），而不是拷贝，就和没有用引用语法一样。<br>注: 和参数传递不同，这里必须在两个地方都用 &amp; 符号 － 来指出返回的是一个引用，而不是通常的一个拷贝，同样也指出 <code>$foo</code> 是作为引用的绑定，而不是通常的赋值。<br>取消引用<br>当你 unset 一个引用，只是断开了变量名和变量内容之间的绑定。这并不意味着变量内容被销毁了。例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php">$a = <span class="number">1</span>; </span></span><br><span class="line"><span class="php">$b =&amp; $a; </span></span><br><span class="line"><span class="php"><span class="keyword">unset</span> ($a); </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>不会 unset $b，只是 $a。<br>再拿这个和 Unix 的 unlink 调用来类比一下可能有助于理解。<br>引用定位<br>许多 PHP 的语法结构是通过引用机制实现的，所以上述有关引用绑定的一切也都适用于这些结构。一些结构，例如引用传递和返回，已经在上面提到了。其它使用引用的结构有：<br>global 引用<br>当用 global $var 声明一个变量时实际上建立了一个到全局变量的引用。也就是说和这样做是相同的： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php">$var =&amp; $GLOBALS[<span class="string">"var"</span>]; </span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这意味着，例如，unset $var 不会 unset 全局变量。 </p>
+<blockquote>
+<p>在一个对象的方法中，$this 永远是调用它的对象的引用</p>
+</blockquote>
+<p>来自 <a href="http://www.zhihu.com/question/20551872" target="_blank" rel="noopener">http://www.zhihu.com/question/20551872</a></p>
+
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2015/08/06/ci流程分析/" id="art-left" class="art-right">
+                <span class="next-title">
+                    ci流程分析<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2015/07/26/科学上网dns/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>科学上网dns
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

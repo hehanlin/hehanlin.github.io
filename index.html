@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+    linqiong'blog
+    
+        | jobbole DA of JinCheng
+    
+</title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+
+<section class="posts">
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年12月24日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/12/24/解脱了/">解脱了</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>考完了，解脱了，仿佛出狱了一样，不出意外的糟糕，没啥，以后日子接着走，没啥。</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年6月30日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/06/30/不定期停更/">不定期停更</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>期末考试结束，心里还是放不下考研的事情，老师说，放不下就去试试吧，别以后后悔。</p>
+<p>试试就试试吧，心里别留遗憾，考不上也没啥，哈哈，反正败仗也有好多次了，不差这一次。</p>
+<p>从今天到12月24日晚，博客可能会不定期停更，没有完成的系列我会抽时间补上。</p>
+<p>有些事总得给自己个交代吧。</p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年6月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/06/15/socket-实现/">socket--实现</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>Socket 作为一种通用的技术规范，首次是由 Berkeley 大学在 1983 为 4.2BSD Unix 提供的，后来逐渐演化为 POSIX 标准。Socket API 是由操作系统提供的一个编程接口，让应用程序可以控制使用 socket 技术。Unix 哲学中有一条一切皆为文件，所以 socket 和 file 的 API 使用很类似：可以进行read、write、open、close等操作。</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/06/15/socket-实现/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年5月12日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/05/12/5-12/">5.12</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h4 id="今天是5月12日，我依旧记得-原-的样子，他回四川的时候说要去找他的奶奶和爷爷，然后我再也没有见过他，我把他送到车站，然而他的背影却成了最后的画面，总想着有机会能去绵阳一趟。"><a href="#今天是5月12日，我依旧记得-原-的样子，他回四川的时候说要去找他的奶奶和爷爷，然后我再也没有见过他，我把他送到车站，然而他的背影却成了最后的画面，总想着有机会能去绵阳一趟。" class="headerlink" title="今天是5月12日，我依旧记得 原 的样子，他回四川的时候说要去找他的奶奶和爷爷，然后我再也没有见过他，我把他送到车站，然而他的背影却成了最后的画面，总想着有机会能去绵阳一趟。"></a>今天是5月12日，我依旧记得 原 的样子，他回四川的时候说要去找他的奶奶和爷爷，然后我再也没有见过他，我把他送到车站，然而他的背影却成了最后的画面，总想着有机会能去绵阳一趟。</h4><h4 id="初中的我，闭塞，不善言语，脾气不好，那时你是我与这个世界通气的唯一窗户。今年这天有点小雨，没有那时那么闷热，我记得你前一星期和我说一定要去北京看奥运会，我以为你和我开玩笑。现在想想，我觉得我回你一句我陪你去也好。"><a href="#初中的我，闭塞，不善言语，脾气不好，那时你是我与这个世界通气的唯一窗户。今年这天有点小雨，没有那时那么闷热，我记得你前一星期和我说一定要去北京看奥运会，我以为你和我开玩笑。现在想想，我觉得我回你一句我陪你去也好。" class="headerlink" title="初中的我，闭塞，不善言语，脾气不好，那时你是我与这个世界通气的唯一窗户。今年这天有点小雨，没有那时那么闷热，我记得你前一星期和我说一定要去北京看奥运会，我以为你和我开玩笑。现在想想，我觉得我回你一句我陪你去也好。"></a>初中的我，闭塞，不善言语，脾气不好，那时你是我与这个世界通气的唯一窗户。今年这天有点小雨，没有那时那么闷热，我记得你前一星期和我说一定要去北京看奥运会，我以为你和我开玩笑。现在想想，我觉得我回你一句我陪你去也好。</h4>
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年5月8日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/05/08/socket-原理/">socket--原理</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ol>
+<li>什么是socket？<br>套接字（socket）是通信的基石，是支持TCP/IP协议的网络通信的基本操作单元。它是网络通信过程中端点的抽象表示，包含进行网络通信必须的五种信息：连接使用的协议，本地主机的IP地址，本地进程的协议端口，远地主机的IP地址，远地进程的协议端口。<br>应用层通过传输层进行数据通信时，TCP会遇到同时为多个应用程序进程提供并发服务的问题。多个TCP连接或多个应用程序进程可能需要通过同一个 TCP协议端口传输数据。为了区别不同的应用程序进程和连接，许多计算机操作系统为应用程序与TCP／IP协议交互提供了套接字(Socket)接口。应用层可以和传输层通过Socket接口，区分来自不同应用程序进程或网络连接的通信，实现数据传输的并发服务（socket是应用层与传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用已实现进程在网络中通信。）</li>
+</ol>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/05/08/socket-原理/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年5月2日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/05/02/python-多进程/">python--多进程</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>上节说到由于GIL（全局解释锁）的问题，多线程并不能充分利用多核处理器，如果是一个CPU计算型的任务，应该使用多进程模块 multiprocessing 。它的工作方式与线程库完全不同，但是两种库的语法却非常相似。multiprocessing给每个进程赋予单独的Python解释器，这样就规避了全局解释锁所带来的问题。但是也别高兴的太早，因为你会遇到接下来说到的一些多进程之间通信的问题。</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/05/02/python-多进程/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年4月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/04/15/python-多线程/">python--多线程</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>多进程和多线程都可以执行多个任务，我们先介绍多线程。<br>线程是进程的一部分。线程的特点是线程之间可以共享内存和变量，资源消耗少（不过在Unix环境中，多进程和多线程资源调度消耗差距不明显，Unix调度较快）。python使用操作系统提供的内核级线程一比一模型，但是有一把GIL.<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/04/15/python-多线程/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年4月2日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/04/02/线程的三种实现模型/">线程的三种实现模型</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="线程定义"><a href="#线程定义" class="headerlink" title="线程定义"></a>线程定义</h3><p>什么是线程？《POSIX Threads Programming》中有一段话对线程的定义进行描述：</p>
+<blockquote>
+<p>A thread is defined as an independent stream of instructions that can be scheduled to run as such by the operating system.</p>
+</blockquote>
+<p>线程可以被认为是一个可以被独立调度的实体，这个实体共享进程的地址空间、文件描述符、代码和数据，且拥有自己私有的栈、寄存器上下文、和程序计数器。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/04/02/线程的三种实现模型/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年2月28日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/02/28/https概述/">https概述</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p><img src="/images/pasted-0.png" alt="upload successful"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在进行 HTTP 通信时，信息可能会监听、服务器或客户端身份伪装等安全问题，HTTPS 则能有效解决这些问题。在使用原始的HTTP连接的时候，因为服务器与用户之间是直接进行的明文传输，导致了用户面临着很多的风险与威胁。攻击者可以用中间人攻击来轻易的 截获或者篡改传输的数据。攻击者想要做些什么并没有任何的限制，包括窃取用户的Session信息、注入有害的代码等，乃至于修改用户传送至服务器的数据。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/02/28/https概述/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年2月20日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/02/20/这一年，下一年/">我这一年，下一年</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>光阴似箭，日月如梭，2016年就这样急匆匆地走了，我21周岁了。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2017/02/20/这一年，下一年/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+</section>
+    
+    <nav class="pagination">
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页 ></a>
+    </nav>
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

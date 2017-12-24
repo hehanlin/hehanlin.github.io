@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+    linqiong'blog
+    
+        | jobbole DA of JinCheng
+    
+</title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+
+<section class="posts">
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月28日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/28/web开发中表单重复提交问题/">web开发中表单重复提交问题</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="1-场景一（多次点击按钮提交表单）"><a href="#1-场景一（多次点击按钮提交表单）" class="headerlink" title="1. 场景一（多次点击按钮提交表单）"></a>1. 场景一（多次点击按钮提交表单）</h3><p>如果网速比较慢的情况下，用户提交表单后，发现服务器半天都没有响应，那么用户可能会以为是自己没有提交表单，就会再点击提交按钮重复提交表单。面对这个情况，如果只是在jsp页面，加上js判断的代码<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/28/web开发中表单重复提交问题/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月23日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/23/用ubuntu初始化/">开发用ubuntu初始化</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="1-更换国内源"><a href="#1-更换国内源" class="headerlink" title="1. 更换国内源"></a>1. 更换国内源</h3>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/23/用ubuntu初始化/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月16日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/16/浏览器解析原理/">浏览器解析原理</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>原文链接:<a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">http://coolshell.cn/articles/9666.html</a><br>废话少说，先来看个图：</p>
+<p><img src="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg" alt=""></p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/16/浏览器解析原理/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/15/浏览器输入网址后发生了神魔/">浏览器输入网址后发生了神魔</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <blockquote>
+<p>该文章取自网上别人博客,并做了少量修改和加入了一些个人的见解,本人才疏学浅,如有冒犯,请多海涵.<br>链接地址:    <a href="http://www.linux178.com/web/httprequest.html" target="_blank" rel="noopener">http://www.linux178.com/web/httprequest.html</a></p>
+</blockquote>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/15/浏览器输入网址后发生了神魔/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月13日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/13/CSS之各种居中/"> CSS之各种居中</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>本文讨论居中情况设定为总宽度不定,内容宽度不定的情况。（改变大小时，仍然居中）。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/13/CSS之各种居中/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月12日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/12/css(2)/">css(二)</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a><strong>继承</strong></h3><p>就像你总是指望着腰缠万贯的老爸有一天会留给你一大笔遗产一样,css中的祖先元素也会向后代传递一样东西:css属性的值.</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/12/css(2)/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月12日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/12/css(1)/">css(一)</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="1-为文档添加样式的三种方法"><a href="#1-为文档添加样式的三种方法" class="headerlink" title="1.为文档添加样式的三种方法"></a><strong>1.为文档添加样式的三种方法</strong></h3>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/12/css(1)/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年12月3日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/12/03/web文件上传/">web文件上传</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h2 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h2><p>谈到文件上传，不得不提 form，中文名叫表单。它可以包含一个用来选择文件的东东，叫做 file。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2015/12/03/web文件上传/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年11月11日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/11/11/实现图片垂直居中的几种方法/">实现图片垂直居中的几种方法</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>monitor韩昨天遇到一个需要将图片显示在浏览器中间的问题，一开始我记错以为<code>&lt;img&gt;</code>的display为<code>inline-block</code>，志超提醒为<code>inline</code>，随后整理以下资料，便于以后使用。<br>大部分为搜集而来，原创见谅，小弟才疏学浅。</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2015/11/11/实现图片垂直居中的几种方法/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2015年11月7日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2015/11/07/全的常用正则表达式大全/">最全的常用正则表达式大全</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>很多不太懂正则的朋友，在遇到需要用正则校验数据时，往往是在网上去找很久，结果找来的还是不很符合要求。所以我最近把开发中常用的一些正则表达式整理了一下，包括校验数字、字符、一些特殊的需求等等。给自己留个底，也给朋友们做个参考。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2015/11/07/全的常用正则表达式大全/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+</section>
+    
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/page/2/">< 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">下一页 ></a>
+    </nav>
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

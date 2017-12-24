@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> nginx配置及优化（中文） · linqiong'blog </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月30日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                nginx配置及优化（中文）
+            
+            </h1>
+            
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <h3 id="一、Nginx常用命令："><a href="#一、Nginx常用命令：" class="headerlink" title="一、Nginx常用命令："></a>一、Nginx常用命令：</h3><a id="more"></a>
+<blockquote>
+<ol>
+<li>启动 Nginx          /usr/local/nginx/sbin/nginx<br>poechant@ubuntu:sudo ./sbin/nginx</li>
+<li>停止 Nginx<br>poechant@ubuntu:sudo ./sbin/nginx -s stop<br>poechant@ubuntu:sudo ./sbin/nginx -s quit<br>-s都是采用向 Nginx 发送信号的方式。</li>
+<li>Nginx 重载配置<br>poechant@ubuntu:sudo ./sbin/nginx -s reload<br>上述是采用向 Nginx 发送信号的方式，或者使用：<br>poechant@ubuntu:service nginx reload</li>
+<li>指定配置文件<br>poechant@ubuntu:sudo ./sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br>-c表示configuration，指定配置文件。</li>
+<li>查看 Nginx 版本<br>有两种可以查看 Nginx 的版本信息的参数。第一种如下：<br>poechant@ubuntu:/usr/local/nginx ./sbin/nginx -v<br>nginx: nginx version: nginx/1.0.0<br>另一种显示的是详细的版本信息：<br>poechant@ubuntu:/usr/local/nginx ./sbin/nginx -V<br>nginx: nginx version: nginx/1.0.0<br>nginx: built by gcc 4.3.3 (Ubuntu 4.3.3-5ubuntu4)<br>nginx: TLS SNI support enabled<br>nginx: configure arguments: –with-http_ssl_module –with-openssl=/home/luming/openssl-1.0.0d/</li>
+<li>检查配置文件是否正确<br>poechant@ubuntu:/usr/local/nginx ./sbin/nginx -t<br>nginx: [alert] could not open error log file: open() “/usr/local/nginx/logs/error.log” failed (13: Permission denied)<br>nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok<br>2012/01/09 16:45:09 [emerg] 23898#0: open() “/usr/local/nginx/logs/nginx.pid” failed (13: Permission denied)<br>nginx: configuration file /usr/local/nginx/conf/nginx.conf test failed<br>如果出现如上的提示信息，表示没有访问错误日志文件和进程，可以sudo（super user do）一下：<br>poerchant@ubuntu:/usr/local/nginx sudo ./sbin/nginx -t<br>nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok<br>nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful<br>如果显示如上，则表示配置文件正确。否则，会有相关提示。</li>
+<li>显示帮助信息<br>poechant@ubuntu:/user/local/nginx ./sbin/nginx -h<br>或者：<br>poechant@ubuntu:/user/local/nginx ./sbin/nginx -?</li>
+</ol>
+</blockquote>
+<h3 id="二、简单的nginx-配置中文详解："><a href="#二、简单的nginx-配置中文详解：" class="headerlink" title="二、简单的nginx 配置中文详解："></a>二、简单的nginx 配置中文详解：</h3><blockquote>
+<p>定义Nginx运行的用户和用户组<br>user www www;<br>nginx进程数，建议设置为等于CPU总核心数。<br>worker_processes 8;<br>全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]<br>error_log /var/log/nginx/error.log info;<br>进程文件<br>pid /var/run/nginx.pid;<br>一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。<br>worker_rlimit_nofile 65535;<br>工作模式与连接数上限<br>events<br>{<br>参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。<br>use epoll;<br>单个进程最大连接数（最大连接数=连接数<em>进程数）<br>worker_connections 65535;<br>}<br>设定http服务器<br>http<br>{<br>include mime.types; #文件扩展名与文件类型映射表<br>default_type application/octet-stream; #默认文件类型<br>charset utf-8; #默认编码<br>server_names_hash_bucket_size 128; #服务器名字的hash表大小<br>client_header_buffer_size 32k; #上传文件大小限制<br>large_client_header_buffers 4 64k; #设定请求缓<br>client_max_body_size 8m; #设定请求缓<br>sendfile on; #开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，<br>　　　　　　　　　#可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。<br>autoindex on; #开启目录列表访问，合适下载服务器，默认关闭。<br>tcp_nopush on; #防止网络阻塞<br>tcp_nodelay on; #防止网络阻塞<br>keepalive_timeout 120; #长连接超时时间，单位是秒<br>FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。<br>fastcgi_connect_timeout 300;<br>fastcgi_send_timeout 300;<br>fastcgi_read_timeout 300;<br>fastcgi_buffer_size 64k;<br>fastcgi_buffers 4 64k;<br>fastcgi_busy_buffers_size 128k;<br>fastcgi_temp_file_write_size 128k;<br>gzip模块设置<br>gzip on; #开启gzip压缩输出<br>gzip_min_length 1k; #最小压缩文件大小<br>gzip_buffers 4 16k; #压缩缓冲区<br>gzip_http_version 1.0; #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）<br>gzip_comp_level 2; #压缩等级<br>gzip_types text/plain application/x-javascript text/css application/xml;<br>压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。<br>gzip_vary on;<br>limit_zone crawler binary_remote_addr 10m; #开启限制IP连接数的时候需要使用<br>upstream blog.ha97.com {<br>upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。<br>server 192.168.80.121:80 weight=3;<br>server 192.168.80.122:80 weight=2;<br>server 192.168.80.123:80 weight=3;<br>}<br>虚拟主机的配置<br>server<br>{<br>监听端口<br>listen 80;<br>域名可以有多个，用空格隔开<br>server_name www.ha97.com ha97.com;<br>index index.html index.htm index.php;<br>root /data/www/ha97;<br>location ~ .</em>.(php|php5)?<br>{<br>fastcgi_pass 127.0.0.1:9000;<br>fastcgi_index index.php;<br>include fastcgi.conf;<br>}<br>图片缓存时间设置<br>location ~ .<em>.(gif|jpg|jpeg|png|bmp|swf)<br>{<br>expires 10d;<br>}<br>JS和CSS缓存时间设置<br>location ~ .</em>.(js|css)?<br>{<br>expires 1h;<br>}<br>日志格式设定<br>log_format access ‘remote_addr - remote_user [time_local] “request” ‘<br>‘status body_bytes_sent “http_referer” ‘<br>‘“http_user_agent” http_x_forwarded_for’;<br>定义本虚拟主机的访问日志<br>access_log /var/log/nginx/ha97access.log access;<br>对 “/“ 启用反向代理<br>location / {<br>proxy_pass <a href="http://127.0.0.1:88" target="_blank" rel="noopener">http://127.0.0.1:88</a>;<br>proxy_redirect off;<br>proxy_set_header X-Real-IP remote_addr;<br>后端的Web服务器可以通过X-Forwarded-For获取用户真实IP<br>proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;<br>以下是一些反向代理的配置，可选。<br>proxy_set_header Host host;<br>client_max_body_size 10m; #允许客户端请求的最大单文件字节数<br>client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，<br>proxy_connect_timeout 90; #nginx跟后端服务器连接超时时间(代理连接超时)<br>proxy_send_timeout 90; #后端服务器数据回传时间(代理发送超时)<br>proxy_read_timeout 90; #连接成功后，后端服务器响应时间(代理接收超时)<br>proxy_buffer_size 4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小<br>proxy_buffers 4 32k; #proxy_buffers缓冲区，网页平均在32k以下的设置<br>proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers<em>2）<br>proxy_temp_file_write_size 64k;<br>设定缓存文件夹大小，大于这个值，将从upstream服务器传<br>}<br>设定查看Nginx状态的地址<br>location /NginxStatus {<br>stub_status on;<br>access_log on;<br>auth_basic “NginxStatus”;<br>auth_basic_user_file conf/htpasswd;<br>htpasswd文件的内容可以用apache提供的htpasswd工具来产生。<br>}<br>本地动静分离反向代理配置<br>所有jsp的页面均交由tomcat或resin处理<br>location ~ .(jsp|jspx|do)? {<br>proxy_set_header Host host;<br>proxy_set_header X-Real-IP remote_addr;<br>proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;<br>proxy_pass <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>;<br>}<br>所有静态文件由nginx直接读取不经过tomcat或resin<br>location ~ .</em>.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)<br>{ expires 15d; }<br>location ~ .*.(js|css)?<br>{ expires 1h; }<br>}<br>}</p>
+</blockquote>
+<h3 id="三、nginx-配置文件中对优化比较有作用的为以下几项："><a href="#三、nginx-配置文件中对优化比较有作用的为以下几项：" class="headerlink" title="三、nginx 配置文件中对优化比较有作用的为以下几项："></a>三、nginx 配置文件中对优化比较有作用的为以下几项：</h3><blockquote>
+<p>worker_processes 8;<br>nginx 进程数，建议按照cpu 数目来指定，一般为它的倍数。</p>
+<p>worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000;<br>为每个进程分配cpu，上例中将8 个进程分配到8 个cpu，当然可以写多个，或者将一<br>个进程分配到多个cpu。</p>
+<p>worker_rlimit_nofile 102400;<br>这个指令是指当一个nginx 进程打开的最多文件描述符数目，理论值应该是最多打开文<br>件数（ulimit -n）与nginx 进程数相除，但是nginx 分配请求并不是那么均匀，所以最好与ulimit -n 的值保持一致。</p>
+<p>use epoll;<br>使用epoll 的I/O 模型</p>
+<p>worker_connections 102400;<br>每个进程允许的最多连接数， 理论上每台nginx 服务器的最大连接数为worker_processes*worker_connections。</p>
+<p>keepalive_timeout 60;<br>keepalive 超时时间。</p>
+<p>client_header_buffer_size 4k;<br>客户端请求头部的缓冲区大小，这个可以根据你的系统分页大小来设置，一般一个请求<br>头的大小不会超过1k，不过由于一般系统分页都要大于1k，所以这里设置为分页大小。分页大小可以用命令getconf PAGESIZE 取得。</p>
+<p>open_file_cache max=102400 inactive=20s;<br>这个将为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。</p>
+<p>open_file_cache_valid 30s;<br>这个是指多长时间检查一次缓存的有效信息。</p>
+<p>open_file_cache_min_uses 1;<br>open_file_cache 指令中的inactive 参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive 时间内一次没被使用，它将被移除。</p>
+</blockquote>
+<h4 id="关于内核参数的优化："><a href="#关于内核参数的优化：" class="headerlink" title="关于内核参数的优化："></a>关于内核参数的优化：</h4><blockquote>
+<p>net.ipv4.tcp_max_tw_buckets = 6000<br>timewait 的数量，默认是180000。</p>
+<p>net.ipv4.ip_local_port_range = 1024 65000<br>允许系统打开的端口范围。</p>
+<p>net.ipv4.tcp_tw_recycle = 1<br>启用timewait 快速回收。</p>
+<p>net.ipv4.tcp_tw_reuse = 1<br>开启重用。允许将TIME-WAIT sockets 重新用于新的TCP 连接。</p>
+<p>net.ipv4.tcp_syncookies = 1<br>开启SYN Cookies，当出现SYN 等待队列溢出时，启用cookies 来处理。</p>
+<p>net.core.somaxconn = 262144<br>web 应用中listen 函数的backlog 默认会给我们内核参数的net.core.somaxconn 限制到128，而nginx 定义的NGX_LISTEN_BACKLOG 默认为511，所以有必要调整这个值。</p>
+<p>net.core.netdev_max_backlog = 262144<br>每个网络接口接收数据包的速率比内核处理这些包的速率快时，允许送到队列的数据包的最大数目。</p>
+<p>net.ipv4.tcp_max_orphans = 262144<br>系统中最多有多少个TCP 套接字不被关联到任何一个用户文件句柄上。如果超过这个数字，孤儿连接将即刻被复位并打印出警告信息。这个限制仅仅是为了防止简单的DoS 攻击，不能过分依靠它或者人为地减小这个值，更应该增加这个值(如果增加了内存之后)。</p>
+<p>net.ipv4.tcp_max_syn_backlog = 262144<br>记录的那些尚未收到客户端确认信息的连接请求的最大值。对于有128M 内存的系统而言，缺省值是1024，小内存的系统则是128。</p>
+<p>net.ipv4.tcp_timestamps = 0<br>时间戳可以避免序列号的卷绕。一个1Gbps 的链路肯定会遇到以前用过的序列号。时间戳能够让内核接受这种“异常”的数据包。这里需要将其关掉。</p>
+<p>net.ipv4.tcp_synack_retries = 1<br>为了打开对端的连接，内核需要发送一个SYN 并附带一个回应前面一个SYN 的ACK。也就是所谓三次握手中的第二次握手。这个设置决定了内核放弃连接之前发送SYN+ACK 包的数量。</p>
+<p>net.ipv4.tcp_syn_retries = 1<br>在内核放弃建立连接之前发送SYN 包的数量。</p>
+<p>net.ipv4.tcp_fin_timeout = 1<br>如果套接字由本端要求关闭，这个参数决定了它保持在FIN-WAIT-2 状态的时间。对端可以出错并永远不关闭连接，甚至意外当机。缺省值是60<br>秒。2.2 内核的通常值是180 秒，3你可以按这个设置，但要记住的是，即使你的机器是一个轻载的WEB<br>服务器，也有因为大量的死套接字而内存溢出的风险，FIN- WAIT-2 的危险性比FIN-WAIT-1 要小，因为它最多只能吃掉1.5K<br>内存，但是它们的生存期长些。</p>
+<p>net.ipv4.tcp_keepalive_time = 30<br>当keepalive 起用的时候，TCP 发送keepalive 消息的频度。缺省是2 小时。</p>
+</blockquote>
+<h4 id="下面贴一个完整的内核优化设置："><a href="#下面贴一个完整的内核优化设置：" class="headerlink" title="下面贴一个完整的内核优化设置："></a>下面贴一个完整的内核优化设置：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.ip_forward</span> = <span class="number">0</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.conf</span><span class="selector-class">.default</span><span class="selector-class">.rp_filter</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.conf</span><span class="selector-class">.default</span><span class="selector-class">.accept_source_route</span> = <span class="number">0</span></span><br><span class="line">kernel<span class="selector-class">.sysrq</span> = <span class="number">0</span></span><br><span class="line">kernel<span class="selector-class">.core_uses_pid</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_syncookies</span> = <span class="number">1</span></span><br><span class="line">kernel<span class="selector-class">.msgmnb</span> = <span class="number">65536</span></span><br><span class="line">kernel<span class="selector-class">.msgmax</span> = <span class="number">65536</span></span><br><span class="line">kernel<span class="selector-class">.shmmax</span> = <span class="number">68719476736</span></span><br><span class="line">kernel<span class="selector-class">.shmall</span> = <span class="number">4294967296</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_max_tw_buckets</span> = <span class="number">6000</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_sack</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_window_scaling</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_rmem</span> = <span class="number">4096</span> <span class="number">87380</span> <span class="number">4194304</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_wmem</span> = <span class="number">4096</span> <span class="number">16384</span> <span class="number">4194304</span></span><br><span class="line">net<span class="selector-class">.core</span><span class="selector-class">.wmem_default</span> = <span class="number">8388608</span></span><br><span class="line">net<span class="selector-class">.core</span><span class="selector-class">.rmem_default</span> = <span class="number">8388608</span></span><br><span class="line">net<span class="selector-class">.core</span><span class="selector-class">.rmem_max</span> = <span class="number">16777216</span></span><br><span class="line">net<span class="selector-class">.core</span><span class="selector-class">.wmem_max</span> = <span class="number">16777216</span></span><br><span class="line">net<span class="selector-class">.core</span><span class="selector-class">.netdev_max_backlog</span> = <span class="number">262144</span></span><br><span class="line">net<span class="selector-class">.core</span><span class="selector-class">.somaxconn</span> = <span class="number">262144</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_max_orphans</span> = <span class="number">3276800</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_max_syn_backlog</span> = <span class="number">262144</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_timestamps</span> = <span class="number">0</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_synack_retries</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_syn_retries</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_tw_recycle</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_tw_reuse</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_mem</span> = <span class="number">94500000</span> <span class="number">915000000</span> <span class="number">927000000</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_fin_timeout</span> = <span class="number">1</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.tcp_keepalive_time</span> = <span class="number">30</span></span><br><span class="line">net<span class="selector-class">.ipv4</span><span class="selector-class">.ip_local_port_range</span> = <span class="number">1024</span> <span class="number">65000</span></span><br></pre></td></tr></table></figure>
+<h4 id="下面是一个简单的nginx-配置文件："><a href="#下面是一个简单的nginx-配置文件：" class="headerlink" title="下面是一个简单的nginx 配置文件："></a>下面是一个简单的nginx 配置文件：</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span> www www;</span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">8</span>;</span><br><span class="line"><span class="attribute">worker_cpu_affinity</span> <span class="number">00000001</span> <span class="number">00000010</span> <span class="number">00000100</span> <span class="number">00001000</span> <span class="number">00010000</span> <span class="number">00100000</span></span><br><span class="line"><span class="number">01000000</span>;</span><br><span class="line"><span class="attribute">error_log</span> /www/log/nginx_error.log <span class="literal">crit</span>;</span><br><span class="line"><span class="attribute">pid</span> /usr/local/nginx/nginx.pid;</span><br><span class="line"><span class="attribute">worker_rlimit_nofile</span> <span class="number">204800</span>;</span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">use</span> <span class="literal">epoll</span>;</span><br><span class="line"><span class="attribute">worker_connections</span> <span class="number">204800</span>;</span><br><span class="line">&#125;</span><br><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">include</span> mime.types;</span><br><span class="line"><span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line"><span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line"><span class="attribute">server_names_hash_bucket_size</span> <span class="number">128</span>;</span><br><span class="line"><span class="attribute">client_header_buffer_size</span> <span class="number">2k</span>;</span><br><span class="line"><span class="attribute">large_client_header_buffers</span> <span class="number">4</span> <span class="number">4k</span>;</span><br><span class="line"><span class="attribute">client_max_body_size</span> <span class="number">8m</span>;</span><br><span class="line"><span class="attribute">sendfile</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">tcp_nopush</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">keepalive_timeout</span> <span class="number">60</span>;</span><br><span class="line"><span class="attribute">fastcgi_cache_path</span> /usr/local/nginx/fastcgi_cache levels=<span class="number">1</span>:<span class="number">2</span></span><br><span class="line">keys_zone=TEST:<span class="number">10m</span></span><br><span class="line">inactive=<span class="number">5m</span>;</span><br><span class="line"><span class="attribute">fastcgi_connect_timeout</span> <span class="number">300</span>;</span><br><span class="line"><span class="attribute">fastcgi_send_timeout</span> <span class="number">300</span>;</span><br><span class="line"><span class="attribute">fastcgi_read_timeout</span> <span class="number">300</span>;</span><br><span class="line"><span class="attribute">fastcgi_buffer_size</span> <span class="number">4k</span>;</span><br><span class="line"><span class="attribute">fastcgi_buffers</span> <span class="number">8</span> <span class="number">4k</span>;</span><br><span class="line"><span class="attribute">fastcgi_busy_buffers_size</span> <span class="number">8k</span>;</span><br><span class="line"><span class="attribute">fastcgi_temp_file_write_size</span> <span class="number">8k</span>;</span><br><span class="line"><span class="attribute">fastcgi_cache</span> TEST;</span><br><span class="line"><span class="attribute">fastcgi_cache_valid</span> <span class="number">200</span> <span class="number">302</span> <span class="number">1h</span>;</span><br><span class="line"><span class="attribute">fastcgi_cache_valid</span> <span class="number">301</span> <span class="number">1d</span>;</span><br><span class="line"><span class="attribute">fastcgi_cache_valid</span> any <span class="number">1m</span>;</span><br><span class="line"><span class="attribute">fastcgi_cache_min_uses</span> <span class="number">1</span>;</span><br><span class="line"><span class="attribute">fastcgi_cache_use_stale</span> <span class="literal">error</span> timeout invalid_header http_500;</span><br><span class="line"><span class="attribute">open_file_cache</span> max=<span class="number">204800</span> inactive=<span class="number">20s</span>;</span><br><span class="line"><span class="attribute">open_file_cache_min_uses</span> <span class="number">1</span>;</span><br><span class="line"><span class="attribute">open_file_cache_valid</span> <span class="number">30s</span>;</span><br><span class="line"><span class="attribute">tcp_nodelay</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">gzip_min_length</span> <span class="number">1k</span>;</span><br><span class="line"><span class="attribute">gzip_buffers</span> <span class="number">4</span> <span class="number">16k</span>;</span><br><span class="line"><span class="attribute">gzip_http_version</span> <span class="number">1</span>.<span class="number">0</span>;</span><br><span class="line"><span class="attribute">gzip_comp_level</span> <span class="number">2</span>;</span><br><span class="line"><span class="attribute">gzip_types</span> text/plain application/x-javascript text/css application/xml;</span><br><span class="line"><span class="attribute">gzip_vary</span> <span class="literal">on</span>;</span><br><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line"><span class="attribute">server_name</span> backup.aiju.com;</span><br><span class="line"><span class="attribute">index</span> index.php index.htm;</span><br><span class="line"><span class="attribute">root</span> /www/html/;</span><br><span class="line"><span class="attribute">location</span> /status</span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">stub_status</span> <span class="literal">on</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ .*\.(php|php5)?</span></span><br><span class="line"><span class="regexp"></span>&#123;</span><br><span class="line"><span class="attribute">fastcgi_pass</span> <span class="number">127.0.0.1:9000</span>;</span><br><span class="line"><span class="attribute">fastcgi_index</span> index.php;</span><br><span class="line"><span class="attribute">include</span> fcgi.conf;</span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf|js|css)</span></span><br><span class="line"><span class="regexp"></span>&#123;</span><br><span class="line"><span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">log_format</span> access <span class="string">'remote_addr -- remote_user [time_local] "request" '</span></span><br><span class="line"><span class="string">'status body_bytes_sent "http_referer" '</span></span><br><span class="line"><span class="string">'"http_user_agent" http_x_forwarded_for'</span>;</span><br><span class="line"><span class="attribute">access_log</span> /www/log/access.log access;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2016/02/03/git常用命令及flow/" id="art-left" class="art-right">
+                <span class="next-title">
+                    git常用命令及flow<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2016/01/28/web开发中表单重复提交问题/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>web开发中表单重复提交问题
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

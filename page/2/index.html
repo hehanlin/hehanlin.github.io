@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+    linqiong'blog
+    
+        | jobbole DA of JinCheng
+    
+</title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+
+<section class="posts">
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年2月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2017/02/15/与自我沟通/">保持与自我沟通</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>从记事起至今，已有整整十年未曾写过日记，小时候郭老师每天为我们批阅日记的情景依旧历历在目，其实当时我是讨厌写日记的，那时的我整个人都迷恋于数学的海洋中。究其原因，是因为数学能给我自己带来满足感，这种满足感是是复杂情感的混合体，来自很多方面，其中包括可以更多的受到来自老师，家长的表扬，以及同学的羡慕，说得直白一点，就是虚荣。而语文并不能满足自己内心的虚荣，那时的自己目光短浅（虽然现在好了一丢丢），并不知记日记的妙处，以至于小学一毕业就开始高兴，终于不用每天写日记了。当然让自己讨厌记日记的原因是多方面的，试想每天晚上的作业繁多，又怎能整理好心思去写一篇文章呢？<br>这种状态一直持续到今天，也可以这么说，已经有十年的时间未曾与自我沟通，高中时段，由于中考不得志，学校环境等原因，曾在内心迷茫的阶段，写过一些关于人生的思考，也未曾留存下来。<br>其实这种状态是这个社会（起码是我生存的这个社会）多数人的状态，大多数人都每天忙碌于自己的事业，却未曾于自己的内心深处那一束快要熄绵的光沟通，那束光主导着整个人，指引着个人的行动，然自己却不知那束光到底想要追求什么？是金钱？名车？北京三环的顶层？又或者仰慕已久的女神跪拜在你面前？<br>整整十年，我反复思考着这个问题，却忘记自己小时候就知道如何与那束光沟通的唯一路径，那就是记日记。<br>或许那束光的追求并不是刚才陈述的那些，它在乎的应该是过程，是态度，是充实而沉稳又不乏坚定的眼神，是为人处世时的恭敬有礼，举止大方得体，是陪伴家人时细心体贴，是工作时的负责敬业，是当别人阿谀奉承，拉帮结派时的不随波逐流。<br>这么多精神财富，如果不记日记，它会随着岁月流逝而永远消失，更为重要的是，自己失去了与内心沟通的机会，从而越发消沉空虚，丧失自我，人如果丧失了自我，那它也就不能称之为人。</p>
+<p><strong>感谢周国平老师给我的启发。</strong></p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年11月1日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/11/01/python-装饰器/">python--装饰器</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>python 是一门优雅的语言，有些使用方法就像魔法一样。装饰器(decorator)就是一种化腐朽性为神奇的技巧。最近一直都在使用 Tornado 框架，一直还是念念不忘 Flask 。Flask 是我最喜欢的 Python 框架，最早被它吸引也是源自它使用装饰器这个语法糖（Syntactic sugar）来做 Router，让代码看上去就感觉甜甜的。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/11/01/python-装饰器/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年9月21日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/09/21/python-元类实现orm/">python--元类实现orm</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>准备工作，创建一个Field类<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Field</span>(<span class="title">object</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name, column_type)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">self</span>.column_type = column_type</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;%s:%s&gt;'</span> % (<span class="keyword">self</span>.__class_<span class="number">_</span>.__name_<span class="number">_</span>, <span class="keyword">self</span>.name)</span><br></pre></td></tr></table></figure></p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/09/21/python-元类实现orm/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年9月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/09/15/python-元类/">python--元类</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>千万不要被所谓“元类是99%的python程序员不会用到的特性”这类的说辞吓住。因为每个中国人，都是天生的元类使用者<br>学懂元类，你只需要知道两句话：</p>
+<ul>
+<li>道生一，一生二，二生三，三生万物</li>
+<li>我是谁？我从哪来里？我要到哪里去？
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/09/15/python-元类/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年6月16日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/06/16/6月面php开发常见题总结/">6月面php开发常见题总结</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <ol>
+<li><p>php是什么？</p>
+<p>php，超文本处理语言，我个人觉得php是为处理http报文而出现的.下为详细：</p>
+<p>(1). 它实现了日常开发中最常用的数据结构及操作函数（诸如字符串，栈，队列，hash等），并保持变量弱类型的灵活，处理垃圾回收。屏蔽了大部分的细节。</p>
+<p>(2). 它将http报文及服务器端的许多重要信息（诸如url,get参数，post参数，cookie,session，用户浏览器信息，服务器信息等）封装成了便于php层开发者操作的数据结构和函数，使得上手及开发速度提升。</p>
+<p>(3). 内部实现了大量操作文件，日期，字符编码，json，xml等函数。</p>
+<p>(4). 对外提供扩展接口，一大批实用的扩展应运而生，phper操作数据库，缓存，处理图片等任务变得简单。</p>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/06/16/6月面php开发常见题总结/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年4月11日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/04/11/自己封装jquery/">自己封装jquery</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>为梳理javascript知识，我觉得有必要亲自实现一遍jquery，虽说自己仅是学生一枚，底层知识不牢，但应用层的东西还是敢去尝试下的，目前代码已放到了github上，有兴趣的童鞋一起学习啊。如果你看见了我笨拙的代码，没错！那就是我写的！<br>github:<a href="https://github.com/hehanlin/hquery" target="_blank" rel="noopener">https://github.com/hehanlin/hquery</a></p>
+
+                
+            
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年2月23日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/02/23/http-cache详解/">http cache详解</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="1-缓存的分类"><a href="#1-缓存的分类" class="headerlink" title="1. 缓存的分类"></a>1. 缓存的分类</h3><p>缓存分为服务端侧（server side，比如 Nginx、Apache）和客户端侧（client side，比如 web browser）。<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/02/23/http-cache详解/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年2月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/02/15/linux系统调用的三种方法/">linux系统调用的三种方法</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>系统调用（System Call）是操作系统为在用户态运行的进程与硬件设备（如CPU、磁盘、打印机等）进行交互提供的一组接口。当用户进程需要发生系统调用时，CPU 通过软中断切换到内核态开始执行内核系统调用函数。下面介绍Linux 下三种发生系统调用的方法：<br>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/02/15/linux系统调用的三种方法/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年2月3日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/02/03/git常用命令及flow/">git常用命令及flow</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <p>git 现在的火爆程度非同一般，它被广泛地用在大型开源项目，团队开发，以及独立开发者，学生之中。</p>
+<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><ul>
+<li>Linux – 打开控制台，然后通过包管理安装，在Ubuntu上命令是：<br>sudo apt-get install git-all</li>
+<li>Windows – 推荐使用git for windows，它包括了图形工具以及命令行模拟器。</li>
+<li>OS X – 最简单的方式是使用homebrew安装，命令行执行<br>brew install git
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/02/03/git常用命令及flow/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+        
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年1月30日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                <a href="/2016/01/30/nginx配置及优化（中文）/">nginx配置及优化（中文）</a>
+            
+            </h1>
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                
+                    <h3 id="一、Nginx常用命令："><a href="#一、Nginx常用命令：" class="headerlink" title="一、Nginx常用命令："></a>一、Nginx常用命令：</h3>
+                    
+            
+        
+            <p class="content-link">
+                <a href="/2016/01/30/nginx配置及优化（中文）/#more">
+                    <span class="iconfont icon-right">继续阅读</span>
+                </a>
+            </p>
+        
+        </div>
+        
+    </article>
+    
+
+    
+</section>
+    
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/">< 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">下一页 ></a>
+    </nav>
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>

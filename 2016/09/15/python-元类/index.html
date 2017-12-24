@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> python--元类 · linqiong'blog </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="linqiong'blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+<meta name="keywords" content="nlvi, Nlvi" />
+
+
+    <meta name="subtitle" content="jobbole DA of JinCheng">
+
+
+
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "linqiong'blog",
+        author: "hanlin",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud-mask"></div>  
+<div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">linqiong'blog</a></span>
+                
+                    <span id="subtitle">jobbole DA of JinCheng</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        <li class="menu-item">
+            <a href="javascript:;" id="search">
+                <span>搜索</span>
+                
+                    <span class="menu-item-label">search</span>
+                
+            </a>
+        </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+</header>
+<div class="mobile-header">
+    <div class="mobile-header-body">
+        <div class="mobile-header-list">
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/">
+                        <span>文章</span>
+                        
+                            <span class="menu-item-label">article</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/archives">
+                        <span>归档</span>
+                        
+                            <span class="menu-item-label">archives</span>
+                        
+                    </a>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item inner-cloud">
+                    <div class="mobile-nav-tag">
+                        <a href="javascript:;" id="mobile-tags">
+                            <span>标签</span>
+                            
+                                <span class="menu-item-label">tags</span>
+                            
+                        </a>
+                    </div>
+                    <div class="mobile-nav-tagcloud">
+                        <div class="mobile-tagcloud-inner">
+                            <a href="/tags/Git/" style="font-size: 14px;">Git</a> <a href="/tags/bui/" style="font-size: 14px;">bui</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/codeIgniter/" style="font-size: 14px;">codeIgniter</a> <a href="/tags/css/" style="font-size: 14px;">css</a> <a href="/tags/html/" style="font-size: 14px;">html</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/php/" style="font-size: 14px;">php</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/web/" style="font-size: 14px;">web</a> <a href="/tags/二叉树/" style="font-size: 14px;">二叉树</a> <a href="/tags/创意/" style="font-size: 14px;">创意</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/吕梁/" style="font-size: 14px;">吕梁</a> <a href="/tags/家居/" style="font-size: 14px;">家居</a> <a href="/tags/家饰/" style="font-size: 14px;">家饰</a> <a href="/tags/数据结构/" style="font-size: 14px;">数据结构</a> <a href="/tags/数据结构，c，c/" style="font-size: 14px;">数据结构，c，c++</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="mobile-nav-item">
+                    <a href="/about">
+                        <span>关于</span>
+                        
+                            <span class="menu-item-label">about</span>
+                        
+                    </a>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="mobile-header-nav">
+        <div class="mobile-header-item" id="mobile-left">
+            <div class="header-menu-item">
+                <span class="header-menu-line"></span>
+            </div>
+        </div>
+        <h1 class="mobile-header-title">
+            <a href="/">linqiong'blog</a>
+        </h1>
+        <div class="mobile-header-item"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2016年9月15日</span>
+                
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                python--元类
+            
+            </h1>
+            
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <p>千万不要被所谓“元类是99%的python程序员不会用到的特性”这类的说辞吓住。因为每个中国人，都是天生的元类使用者<br>学懂元类，你只需要知道两句话：</p>
+<ul>
+<li>道生一，一生二，二生三，三生万物</li>
+<li>我是谁？我从哪来里？我要到哪里去？<a id="more"></a>
+</li>
+</ul>
+<p>在python世界，拥有一个永恒的道，那就是“type”，请记在脑海中，type就是道。如此广袤无垠的python生态圈，都是由type产生出来的。</p>
+<p>道生一，一生二，二生三，三生万物。</p>
+<ol>
+<li>道 即是 type</li>
+<li>一 即是 metaclass(元类，或者叫类生成器)</li>
+<li>二 即是 class(类，或者叫实例生成器)</li>
+<li>三 即是 instance(实例)</li>
+<li>万物 即是 实例的各种属性与方法，我们平常使用python时，调用的就是它们。</li>
+</ol>
+<p>道和一，是我们今天讨论的命题，而二、三、和万物，则是我们常常使用的类、实例、属性和方法，用hello world来举例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个Hello类，拥有属性say_hello ----二的起源</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">(self, name=<span class="string">'world'</span>)</span>:</span></span><br><span class="line">        print(<span class="string">'Hello, %s.'</span> % name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从Hello类创建一个实例hello ----二生三</span></span><br><span class="line">hello = Hello()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用hello调用方法say_hello ----三生万物</span></span><br><span class="line">hello.say_hello()</span><br></pre></td></tr></table></figure></p>
+<p>输出效果：<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Hello,</span> world.</span><br></pre></td></tr></table></figure></p>
+<p>这就是一个标准的“二生三，三生万物”过程。 从类到我们可以调用的方法，用了这两步。</p>
+<p>那我们不由自主要问，类从何而来呢？回到代码的第一行。<br>class Hello其实是一个函数的“语义化简称”，只为了让代码更浅显易懂，它的另一个写法是：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def fn(self, <span class="keyword">name</span>=<span class="string">'world'</span>): # 假如我们有一个函数叫fn</span><br><span class="line">    print(<span class="string">'Hello, %s.'</span> % <span class="keyword">name</span>)</span><br><span class="line">    </span><br><span class="line">Hello = <span class="keyword">type</span>(<span class="string">'Hello'</span>, (<span class="keyword">object</span>,), dict(say_hello=fn)) # 通过<span class="keyword">type</span>创建Hello <span class="keyword">class</span> ---- 神秘的“道”，可以点化一切，这次我们直接从“道”生出了“二”</span><br></pre></td></tr></table></figure></p>
+<p>这样的写法，就和之前的Class Hello写法作用完全相同，你可以试试创建实例并调用<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从Hello类创建一个实例hello ----二生三，完全一样</span></span><br><span class="line">hello = Hello()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用hello调用方法say_hello ----三生万物，完全一样</span></span><br><span class="line">hello.say_hello()</span><br></pre></td></tr></table></figure></p>
+<p>输出效果：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, world. <span class="comment">----调用结果完全一样。</span></span><br></pre></td></tr></table></figure></p>
+<p>我们回头看一眼最精彩的地方，道直接生出了二：<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Hello</span> = <span class="keyword">type</span>(‘<span class="type">Hello</span>’, (object,), dict(say_hello=fn))</span><br></pre></td></tr></table></figure></p>
+<p>这就是“道”，python世界的起源，你可以为此而惊叹。<br>注意它的三个参数！暗合人类的三大永恒命题：我是谁，我从哪里来，我要到哪里去。</p>
+<ul>
+<li>第一个参数：我是谁。 在这里，我需要一个区分于其它一切的命名，以上的实例将我命名为“Hello”</li>
+<li>第二个参数：我从哪里来在这里.我需要知道从哪里来，也就是我的“父类”，以上实例中我的父类是“object”——python中一种非常初级的类。</li>
+<li>第三个参数：我要到哪里去. 在这里，我们将需要调用的方法和属性包含到一个字典里，再作为参数传入。以上实例中，我们有一个say_hello方法包装进了字典中。</li>
+</ul>
+<p>值得注意的是，三大永恒命题，是一切类，一切实例，甚至一切实例属性与方法都具有的。理所应当，它们的“创造者”，道和一，即type和元类，也具有这三个参数。但平常，类的三大永恒命题并不作为参数传入，而是以如下方式传入<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span>(<span class="title">object</span>)&#123;</span></span><br><span class="line"><span class="comment"># class 后声明“我是谁”</span></span><br><span class="line"><span class="comment"># 小括号内声明“我来自哪里”</span></span><br><span class="line"><span class="comment"># 中括号内声明“我要到哪里去”</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>造物主，可以直接创造单个的人，但这是一件苦役。造物主会先创造“人”这一物种，再批量创造具体的个人。并将三大永恒命题，一直传递下去。</li>
+<li>“道”可以直接生出“二”，但它会先生出“一”，再批量地制造“二”。</li>
+<li>type可以直接生成类（class），但也可以先生成元类（metaclass），再使用元类批量定制类（class）。<h3 id="元类——道生一，一生二"><a href="#元类——道生一，一生二" class="headerlink" title="元类——道生一，一生二"></a>元类——道生一，一生二</h3>一般来说，元类均被命名后缀为Metalass。想象一下，我们需要一个可以自动打招呼的元类，它里面的类方法呢，有时需要say_Hello，有时需要say_Hi，有时又需要say_Sayolala，有时需要say_Nihao。</li>
+</ul>
+<p>如果每个内置的say_xxx都需要在类里面声明一次，那将是多么可怕的苦役！ 不如使用元类来解决问题。</p>
+<p>以下是创建一个专门“打招呼”用的元类代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SayMetaClass</span><span class="params">(type)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></span><br><span class="line">        attrs[<span class="string">'say_'</span>+name] = <span class="keyword">lambda</span> self,value,saying=name: print(saying+<span class="string">','</span>+value+<span class="string">'!'</span>)</span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br></pre></td></tr></table></figure></p>
+<p>记住两点：</p>
+<ol>
+<li><p>元类是由“type”衍生而出，所以父类需要传入type。【道生一，所以一必须包含道】</p>
+</li>
+<li><p>元类的操作都在 <strong>new</strong>中完成，它的第一个参数是将创建的类，之后的参数即是三大永恒命题：我是谁，我从哪里来，我将到哪里去。 它返回的对象也是三大永恒命题，接下来，这三个参数将一直陪伴我们。</p>
+</li>
+</ol>
+<p>在<strong>new</strong>中，我只进行了一个操作，就是<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attrs[<span class="string">'say_'</span>+name] = lambda self,<span class="keyword">value</span>,saying=name: print(saying+<span class="string">','</span>+<span class="keyword">value</span>+<span class="string">'!'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>它跟据类的名字，创建了一个类方法。比如我们由元类创建的类叫“Hello”，那创建时就自动有了一个叫“say_Hello”的类方法，然后又将类的名字“Hello”作为默认参数saying，传到了方法里面。然后把hello方法调用时的传参作为value传进去，最终打印出来。</p>
+<p>那么，一个元类是怎么从创建到调用的呢？<br>来！一起根据道生一、一生二、二生三、三生万物的准则，走进元类的生命周期吧!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 道生一：传入type</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SayMetaClass</span><span class="params">(type)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 传入三大永恒命题：类名称、父类、属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></span><br><span class="line">        <span class="comment"># 创造“天赋”</span></span><br><span class="line">        attrs[<span class="string">'say_'</span>+name] = <span class="keyword">lambda</span> self,value,saying=name: print(saying+<span class="string">','</span>+value+<span class="string">'!'</span>)</span><br><span class="line">        <span class="comment"># 传承三大永恒命题：类名称、父类、属性</span></span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一生二：创建类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span><span class="params">(object, metaclass=SayMetaClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 二生三：创建实列</span></span><br><span class="line">hello = Hello()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三生万物：调用实例方法</span></span><br><span class="line">hello.say_Hello(<span class="string">'world!'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出为<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Hello,</span> world!</span><br></pre></td></tr></table></figure></p>
+<p>注意：通过元类创建的类，第一个参数是父类，第二个参数是metaclass</p>
+<p>普通人出生都不会说话，但有的人出生就会打招呼说“Hello”，“你好”,“sayolala”，这就是天赋的力量。它会给我们面向对象的编程省下无数的麻烦。</p>
+<p>现在，保持元类不变，我们还可以继续创建Sayolala， Nihao类，如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一生二：创建类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sayolala</span><span class="params">(object, metaclass=SayMetaClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 二生三：创建实列</span></span><br><span class="line">s = Sayolala()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三生万物：调用实例方法</span></span><br><span class="line">s.say_Sayolala(<span class="string">'japan!'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Sayolala,</span> japan!</span><br></pre></td></tr></table></figure></p>
+<p>也可以说中文<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一生二：创建类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Nihao</span><span class="params">(object, metaclass=SayMetaClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 二生三：创建实列</span></span><br><span class="line">n = Nihao()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三生万物：调用实例方法</span></span><br><span class="line">n.say_Nihao(<span class="string">'中华!'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Nihao,</span> 中华!</span><br></pre></td></tr></table></figure></p>
+<p>再来一个小例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 道生一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListMetaclass</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></span><br><span class="line">        <span class="comment"># 天赋：通过add方法将值绑定</span></span><br><span class="line">        attrs[<span class="string">'add'</span>] = <span class="keyword">lambda</span> self, value: self.append(value)</span><br><span class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 一生二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyList</span><span class="params">(list, metaclass=ListMetaclass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 二生三</span></span><br><span class="line">L = MyList()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三生万物</span></span><br><span class="line">L.add(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>现在我们打印一下L<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">print</span><span class="params">(L)</span></span></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; [<span class="number">1</span>]</span><br></pre></td></tr></table></figure></p>
+<p>而普通的list没有add()方法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L2 = <span class="keyword">list</span>()</span><br><span class="line">L2.<span class="built_in">add</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;AttributeError: <span class="string">'list'</span> object <span class="built_in">has</span> <span class="keyword">no</span> attribute <span class="string">'add'</span></span><br></pre></td></tr></table></figure></p>
+
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2016/09/21/python-元类实现orm/" id="art-left" class="art-right">
+                <span class="next-title">
+                    python--元类实现orm<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2016/06/16/6月面php开发常见题总结/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>6月面php开发常见题总结
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1996 ~ 2017</span>
+        <span>❤</span>
+        <span>hanlin</span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+<script src="/script/search.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.mobileHeader();
+    Nlvi.back2top();
+    Nlvi.smoothScroll();
+    Nlvi.onView();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward();
+    Nlvi.picPos();
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+    
+    <div class="search" id="search">
+        <div class="mask" id="mask"></div>
+        <div class="search-wrapper syuanpi">
+            <h1 id="search-header" class="syuanpi">搜索一下？</h1>
+            <div class="input">
+                <input type="text" id="local-search-input" results="0" name="">
+            </div>
+            <div id="local-search-result"></div>
+        </div>
+    </div>
+    <script>
+    var GREETING = {
+        morning: "当我们探索时，就要发现到真理",
+        noon: "人的天职在于勇于探索真理。",
+        after: "一件事实是一条没有性别的真理",
+        night: "真理有时可能变得黯淡，但它永远不会熄灭",
+        midnight: "真理在人那里获得生命力，并且展现出来"
+    }
+    $(document).ready(function(){
+        Nlvi.search();
+    });
+    </script>
+
+</body>
+</html>
